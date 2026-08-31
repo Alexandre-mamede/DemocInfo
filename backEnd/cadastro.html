@@ -1,0 +1,200 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Criar conta | DemocInfo</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+        <div class="container navbar-content">
+
+            <a href="index.html" class="logo">
+                Democ<span>Info</span>
+            </a>
+
+            <div class="nav-actions">
+
+                <span class="login-text">
+                    Já possui uma conta?
+                </span>
+
+                <a href="login.html" class="btn btn-secondary">
+                    Entrar
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- CADASTRO -->
+
+    <main class="auth-page">
+
+        <div class="auth-container">
+
+            <div class="auth-header">
+
+                <span class="eyebrow">
+                    Comece agora
+                </span>
+
+                <h1>
+                    Crie sua conta
+                </h1>
+
+                <p>
+                    Configure sua empresa para começar a utilizar a DemocInfo.
+                </p>
+
+            </div>
+
+
+            <form class="auth-form" id="registerForm">
+
+                <div class="form-group">
+
+                    <label for="company">
+                        Nome da empresa
+                    </label>
+
+                    <input
+                        type="text"
+                        id="company"
+                        name="company"
+                        placeholder="Nome da sua empresa"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Seu nome
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Seu nome completo"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="email">
+                        E-mail
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="empresa@exemplo.com"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Senha
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Crie uma senha"
+                        minlength="6"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="passwordConfirm">
+                        Confirmar senha
+                    </label>
+
+                    <input
+                        type="password"
+                        id="passwordConfirm"
+                        name="passwordConfirm"
+                        placeholder="Digite a senha novamente"
+                        minlength="6"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary btn-large full"
+                >
+                    Criar minha conta
+                </button>
+
+
+                <p class="auth-footer-text">
+
+                    Ao criar uma conta, você concorda com os termos
+                    de uso da DemocInfo.
+
+                </p>
+
+            </form>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <div class="container footer-content">
+
+            <span>
+                © 2026 DemocInfo
+            </span>
+
+            <span>
+                Retenção inteligente para empresas.
+            </span>
+
+        </div>
+
+    </footer>
+
+
+    <script src="auth.js"></script>
+
+</body>
+</html>
+```

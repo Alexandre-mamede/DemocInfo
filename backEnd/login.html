@@ -1,0 +1,179 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Entrar | DemocInfo</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+        <div class="container navbar-content">
+
+            <a href="index.html" class="logo">
+                Democ<span>Info</span>
+            </a>
+
+            <div class="nav-actions">
+
+                <span class="login-text">
+                    Ainda não possui uma conta?
+                </span>
+
+                <a href="cadastro.html" class="btn btn-primary">
+                    Criar conta
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- LOGIN -->
+
+    <main class="auth-page">
+
+        <div class="auth-container">
+
+            <div class="auth-header">
+
+                <span class="eyebrow">
+                    DemocInfo
+                </span>
+
+                <h1>
+                    Bem-vindo de volta
+                </h1>
+
+                <p>
+                    Entre na sua conta para acessar a plataforma.
+                </p>
+
+            </div>
+
+
+            <form class="auth-form" id="loginForm">
+
+                <div class="form-group">
+
+                    <label for="email">
+                        E-mail
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="empresa@exemplo.com"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <div class="password-label">
+
+                        <label for="password">
+                            Senha
+                        </label>
+
+                        <a href="#">
+                            Esqueceu a senha?
+                        </a>
+
+                    </div>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Digite sua senha"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="remember-me">
+
+                    <label>
+
+                        <input
+                            type="checkbox"
+                            id="remember"
+                        >
+
+                        Lembrar de mim
+
+                    </label>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary btn-large full"
+                >
+                    Entrar
+                </button>
+
+
+                <div class="auth-divider">
+                    ou
+                </div>
+
+
+                <p class="auth-footer-text">
+
+                    Ainda não possui uma conta?
+
+                    <a href="cadastro.html">
+                        Criar conta
+                    </a>
+
+                </p>
+
+            </form>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <div class="container footer-content">
+
+            <span>
+                © 2026 DemocInfo
+            </span>
+
+            <span>
+                Retenção inteligente para empresas.
+            </span>
+
+        </div>
+
+    </footer>
+
+
+    <script src="auth.js"></script>
+
+</body>
+</html>
+```
