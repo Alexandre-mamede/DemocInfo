@@ -104,7 +104,7 @@ By analyzing individual customer behavior, identifying potential risks, and reco
 **DemocInfo: Understand your customers. Act at the right time. Retain more.**
 
 ## Authors
--Alexandre Mamede Patrocinio
--Gabriel Bittar
--Cauan Chaga
--Diego Fernandes
+-Alexandre Mamede Patrocinio.
+-Gabriel Bittar.
+-Cauan Chaga.
+-Diego Fernandes.
