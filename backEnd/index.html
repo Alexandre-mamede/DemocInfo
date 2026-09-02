@@ -1,16 +1,14 @@
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>DemocInfo | Retenção inteligente de clientes</title>
+    <title>RetainAI | Retenção inteligente de clientes</title>
 
     <meta
         name="description"
-        content="DemocInfo utiliza inteligência artificial para identificar clientes em risco e automatizar campanhas de retenção."
+        content="Use inteligência artificial para identificar clientes em risco e automatizar ofertas personalizadas."
     >
 
     <link rel="stylesheet" href="style.css">
@@ -20,34 +18,40 @@
 
     <!-- NAVBAR -->
 
-    <header class="navbar" id="navbar">
+    <header class="navbar">
+
         <div class="container navbar-content">
 
-            <a href="index.html" class="logo">
+            <a href="#" class="logo">
                 Democ<span>Info</span>
             </a>
 
             <nav class="nav-links">
-                <a href="#problema">Problema</a>
+                <a href="#produto">Produto</a>
                 <a href="#como-funciona">Como funciona</a>
                 <a href="#recursos">Recursos</a>
                 <a href="#planos">Planos</a>
+                <a href="produto.html">Produto</a>
             </nav>
 
             <div class="nav-actions">
                 <a href="login.html" class="login-link">Entrar</a>
-                <a href="cadastro.html" class="btn btn-primary">Começar agora</a>
+                <a href="#planos" class="btn btn-primary">
+                    Começar agora
+                </a>
             </div>
 
         </div>
+
     </header>
 
 
-    <!-- HERO -->
-
     <main>
 
-        <section class="hero">
+        <!-- HERO -->
+
+        <section class="hero" id="produto">
+
             <div class="container hero-content">
 
                 <div class="hero-text">
@@ -58,36 +62,39 @@
                     </div>
 
                     <h1>
-                        Faça seus clientes
-                        <span>voltarem.</span>
+                        Pare de perder
+                        <span>clientes</span>
+                        sem perceber.
                     </h1>
 
                     <p>
-                        A DemocInfo analisa o comportamento dos seus clientes,
-                        identifica sinais de abandono e cria ações de retenção
-                        automaticamente.
+                        o DemocInfo analisa o comportamento dos seus clientes,
+                        identifica sinais de abandono e cria ofertas
+                        personalizadas automaticamente.
                     </p>
 
                     <div class="hero-buttons">
-                        <a href="cadastro.html" class="btn btn-primary btn-large">
+
+                        <a href="#planos" class="btn btn-primary btn-large">
                             Começar agora
                         </a>
 
-                        <a href="produto.html" class="btn btn-secondary btn-large">
-                            Conhecer o produto
+                        <a href="#como-funciona" class="btn btn-secondary btn-large">
+                            Como funciona
                         </a>
+
                     </div>
 
                     <div class="hero-info">
                         <span>✓ Análise automática</span>
-                        <span>✓ Campanhas inteligentes</span>
-                        <span>✓ Dados centralizados</span>
+                        <span>✓ Ofertas personalizadas</span>
+                        <span>✓ Inteligência artificial</span>
                     </div>
 
                 </div>
 
 
-                <!-- DASHBOARD -->
+                <!-- MOCKUP DO SISTEMA -->
 
                 <div class="dashboard-wrapper">
 
@@ -99,11 +106,11 @@
 
                             <div>
                                 <span class="dashboard-label">
-                                    DEMOCINFO AI
+                                    VISÃO GERAL
                                 </span>
 
                                 <h3>
-                                    Visão geral
+                                    Dashboard
                                 </h3>
                             </div>
 
@@ -118,8 +125,9 @@
                         <div class="stats-grid">
 
                             <div class="stat-card">
+
                                 <span class="stat-title">
-                                    Clientes ativos
+                                    Clientes analisados
                                 </span>
 
                                 <strong>
@@ -127,36 +135,43 @@
                                 </strong>
 
                                 <small class="positive">
-                                    +12,4%
+                                    ↑ 12,4%
                                 </small>
+
                             </div>
 
+
                             <div class="stat-card">
+
                                 <span class="stat-title">
-                                    Em risco
+                                    Clientes em risco
                                 </span>
 
                                 <strong>
-                                    326
+                                    728
                                 </strong>
 
                                 <small class="negative">
-                                    Atenção
+                                    ↑ 8,2%
                                 </small>
+
                             </div>
 
+
                             <div class="stat-card">
+
                                 <span class="stat-title">
-                                    Retornaram
+                                    Clientes recuperados
                                 </span>
 
                                 <strong>
-                                    74%
+                                    1.284
                                 </strong>
 
                                 <small class="positive">
-                                    +8,2%
+                                    ↑ 21,7%
                                 </small>
+
                             </div>
 
                         </div>
@@ -166,9 +181,15 @@
 
                             <div class="section-header">
 
-                                <h4>
-                                    Clientes que precisam de atenção
-                                </h4>
+                                <div>
+                                    <span class="dashboard-label">
+                                        ANÁLISE
+                                    </span>
+
+                                    <h4>
+                                        Clientes em risco
+                                    </h4>
+                                </div>
 
                                 <span class="view-all">
                                     Ver todos
@@ -180,22 +201,17 @@
                             <div class="customer">
 
                                 <div class="customer-avatar">
-                                    AS
+                                    JS
                                 </div>
 
                                 <div class="customer-info">
-                                    <strong>
-                                        Ana Souza
-                                    </strong>
-
-                                    <span>
-                                        Última compra há 21 dias
-                                    </span>
+                                    <strong>João Silva</strong>
+                                    <span>27 dias sem comprar</span>
                                 </div>
 
-                                <span class="risk high">
-                                    Alto
-                                </span>
+                                <div class="risk high">
+                                    82%
+                                </div>
 
                             </div>
 
@@ -203,22 +219,17 @@
                             <div class="customer">
 
                                 <div class="customer-avatar">
-                                    RM
+                                    MS
                                 </div>
 
                                 <div class="customer-info">
-                                    <strong>
-                                        Rafael Mendes
-                                    </strong>
-
-                                    <span>
-                                        Frequência caiu 43%
-                                    </span>
+                                    <strong>Maria Santos</strong>
+                                    <span>24 dias sem comprar</span>
                                 </div>
 
-                                <span class="risk medium">
-                                    Médio
-                                </span>
+                                <div class="risk high">
+                                    76%
+                                </div>
 
                             </div>
 
@@ -226,22 +237,17 @@
                             <div class="customer">
 
                                 <div class="customer-avatar">
-                                    LC
+                                    CO
                                 </div>
 
                                 <div class="customer-info">
-                                    <strong>
-                                        Lucas Costa
-                                    </strong>
-
-                                    <span>
-                                        Sem atividade há 17 dias
-                                    </span>
+                                    <strong>Carlos Oliveira</strong>
+                                    <span>19 dias sem comprar</span>
                                 </div>
 
-                                <span class="risk high">
-                                    Alto
-                                </span>
+                                <div class="risk medium">
+                                    64%
+                                </div>
 
                             </div>
 
@@ -260,12 +266,11 @@
                                 </span>
 
                                 <strong>
-                                    Enviar benefício personalizado
+                                    Oferta de 10% para João Silva
                                 </strong>
 
                                 <p>
-                                    Cliente apresenta queda significativa
-                                    na frequência de compras.
+                                    Alta probabilidade de retorno.
                                 </p>
                             </div>
 
@@ -276,12 +281,13 @@
                 </div>
 
             </div>
+
         </section>
 
 
         <!-- PROBLEMA -->
 
-        <section class="problem" id="problema">
+        <section class="problem">
 
             <div class="container">
 
@@ -292,14 +298,14 @@
                     </span>
 
                     <h2>
-                        Seus clientes estão
-                        <span>sumindo?</span>
+                        Seus clientes deixam sinais.
+                        <span>Você só precisa enxergá-los.</span>
                     </h2>
 
                     <p>
-                        Muitas empresas possuem milhares de dados, mas não
-                        conseguem transformar essas informações em ações
-                        realmente úteis.
+                        Mudanças na frequência de compra, no valor gasto e
+                        no comportamento podem indicar que um cliente está
+                        prestes a abandonar sua empresa.
                     </p>
 
                 </div>
@@ -307,58 +313,46 @@
 
                 <div class="problem-grid">
 
-                    <article class="problem-card">
-
-                        <div class="problem-icon">
-                            ⚠
-                        </div>
+                    <div class="problem-card">
+                        <div class="problem-icon">📉</div>
 
                         <h3>
-                            Clientes inativos
+                            Frequência diminuindo
                         </h3>
 
                         <p>
-                            O cliente deixa de utilizar seu serviço e a empresa
-                            percebe o problema somente quando já é tarde.
+                            O cliente costumava comprar toda semana,
+                            mas agora passa cada vez mais tempo sem voltar.
                         </p>
+                    </div>
 
-                    </article>
+
+                    <div class="problem-card">
+                        <div class="problem-icon">⚠️</div>
+
+                        <h3>
+                            Risco invisível
+                        </h3>
+
+                        <p>
+                            Sem análise dos dados, fica difícil identificar
+                            quais clientes realmente precisam de atenção.
+                        </p>
+                    </div>
 
 
-                    <article class="problem-card">
-
-                        <div class="problem-icon">
-                            ◈
-                        </div>
+                    <div class="problem-card">
+                        <div class="problem-icon">💸</div>
 
                         <h3>
                             Descontos desperdiçados
                         </h3>
 
                         <p>
-                            Oferecer promoções para todos pode reduzir sua
-                            margem sem necessariamente aumentar a retenção.
+                            Oferecer descontos para todos pode reduzir sua
+                            margem sem aumentar a retenção.
                         </p>
-
-                    </article>
-
-
-                    <article class="problem-card">
-
-                        <div class="problem-icon">
-                            ◎
-                        </div>
-
-                        <h3>
-                            Dados sem ação
-                        </h3>
-
-                        <p>
-                            Ter dados dos clientes não basta. É preciso saber
-                            quando agir e qual ação utilizar.
-                        </p>
-
-                    </article>
+                    </div>
 
                 </div>
 
@@ -367,7 +361,7 @@
         </section>
 
 
-        <!-- COMO FUNCIONA -->
+        <!--  FUNCIONA -->
 
         <section class="how-it-works" id="como-funciona">
 
@@ -380,89 +374,85 @@
                     </span>
 
                     <h2>
-                        Da análise à
-                        <span>ação automática.</span>
+                        Do dado à retenção,
+                        <span>automaticamente.</span>
                     </h2>
-
-                    <p>
-                        A DemocInfo transforma o comportamento dos clientes
-                        em campanhas de retenção mais inteligentes.
-                    </p>
 
                 </div>
 
 
                 <div class="steps">
 
-                    <article class="step">
+                    <div class="step">
 
                         <div class="step-number">
                             01
                         </div>
 
                         <h3>
-                            Conecte seus dados
+                            Analise
                         </h3>
 
                         <p>
-                            Integre os dados dos seus clientes à plataforma.
+                            A plataforma analisa os dados e o histórico
+                            de comportamento dos seus clientes.
                         </p>
 
-                    </article>
+                    </div>
 
 
-                    <article class="step">
+                    <div class="step">
 
                         <div class="step-number">
                             02
                         </div>
 
                         <h3>
-                            A IA analisa
+                            Identifique
                         </h3>
 
                         <p>
-                            O sistema identifica mudanças no comportamento
-                            e sinais de risco.
+                            o software encontra padrões que indicam possíveis
+                            sinais de abandono.
                         </p>
 
-                    </article>
+                    </div>
 
 
-                    <article class="step">
+                    <div class="step">
 
                         <div class="step-number">
                             03
                         </div>
 
                         <h3>
-                            Ação personalizada
+                            Personalize
                         </h3>
 
                         <p>
-                            A plataforma recomenda a melhor estratégia para
-                            cada perfil de cliente.
+                            O sistema define uma oferta adequada para
+                            cada cliente dentro das regras da empresa.
                         </p>
 
-                    </article>
+                    </div>
 
 
-                    <article class="step">
+                    <div class="step">
 
                         <div class="step-number">
                             04
                         </div>
 
                         <h3>
-                            Resultado
+                            Automatize
                         </h3>
 
                         <p>
-                            Acompanhe as campanhas e descubra o que realmente
-                            funciona.
+                            A ação é executada automaticamente e os
+                            resultados alimentam novas análises.
                         </p>
 
-                    </article>
+                    </div>
 
                 </div>
 
@@ -484,90 +474,85 @@
                     </span>
 
                     <h2>
-                        Uma plataforma feita para
-                        <span>reter clientes.</span>
+                        Tudo para transformar
+                        <span>dados em retenção.</span>
                     </h2>
-
-                    <p>
-                        Automatize o processo de identificar oportunidades
-                        de retenção e agir sobre elas.
-                    </p>
 
                 </div>
 
 
                 <div class="features-grid">
 
-                    <article class="feature-card">
+                    <div class="feature-card large">
 
                         <span class="feature-number">
                             01
                         </span>
 
                         <h3>
-                            Análise de comportamento
+                            Previsão de abandono
                         </h3>
 
                         <p>
-                            Acompanhe frequência de compras, tempo desde a
-                            última atividade e mudanças no comportamento.
+                            Identifique clientes que apresentam alterações
+                            significativas no comportamento.
                         </p>
 
-                    </article>
+                    </div>
 
 
-                    <article class="feature-card">
+                    <div class="feature-card">
 
                         <span class="feature-number">
                             02
                         </span>
 
                         <h3>
-                            Previsão de risco
+                            Ofertas inteligentes
                         </h3>
 
                         <p>
-                            Identifique clientes que apresentam sinais de
-                            possível abandono.
+                            Gere ofertas personalizadas com base no perfil
+                            e histórico de cada cliente.
                         </p>
 
-                    </article>
+                    </div>
 
 
-                    <article class="feature-card">
+                    <div class="feature-card">
 
                         <span class="feature-number">
                             03
                         </span>
 
                         <h3>
-                            Ofertas automáticas
+                            Automação
                         </h3>
 
                         <p>
-                            Crie regras para que benefícios sejam enviados
-                            automaticamente aos clientes selecionados.
+                            Execute ações automaticamente sem precisar
+                            acompanhar cada cliente manualmente.
                         </p>
 
-                    </article>
+                    </div>
 
 
-                    <article class="feature-card">
+                    <div class="feature-card">
 
                         <span class="feature-number">
                             04
                         </span>
 
                         <h3>
-                            Resultados das campanhas
+                            Inteligência contínua
                         </h3>
 
                         <p>
-                            Compare campanhas e descubra quais estratégias
-                            geram melhores resultados.
+                            Analise os resultados das ações e aprimore
+                            continuamente as estratégias.
                         </p>
 
-                    </article>
+                    </div>
 
                 </div>
 
@@ -589,23 +574,19 @@
                     </span>
 
                     <h2>
-                        Escolha o plano para
-                        <span>sua empresa.</span>
+                        Escolha o plano ideal
+                        <span>para sua empresa.</span>
                     </h2>
-
-                    <p>
-                        Comece pequeno e aumente conforme sua operação cresce.
-                    </p>
 
                 </div>
 
 
                 <div class="pricing-grid">
 
-                    <article class="pricing-card">
+                    <div class="pricing-card">
 
                         <h3>
-                            Essencial
+                            Starter
                         </h3>
 
                         <p>
@@ -613,32 +594,32 @@
                         </p>
 
                         <div class="price">
-                            R$ 99
+                            R$ 199
                             <span>/mês</span>
                         </div>
 
                         <ul>
-                            <li>✓ Até 1.000 clientes</li>
+                            <li>✓ Até 5.000 clientes</li>
                             <li>✓ Análise de comportamento</li>
-                            <li>✓ Painel de indicadores</li>
-                            <li>✓ Relatórios básicos</li>
+                            <li>✓ Detecção de risco</li>
+                            <li>✓ Ofertas automáticas</li>
                         </ul>
 
-                        <a href="cadastro.html" class="btn btn-secondary full">
+                        <a href="#" class="btn btn-secondary full">
                             Começar
                         </a>
 
-                    </article>
+                    </div>
 
 
-                    <article class="pricing-card featured">
+                    <div class="pricing-card featured">
 
-                        <span class="popular">
+                        <div class="popular">
                             MAIS POPULAR
-                        </span>
+                        </div>
 
                         <h3>
-                            Inteligente
+                            Professional
                         </h3>
 
                         <p>
@@ -646,26 +627,26 @@
                         </p>
 
                         <div class="price">
-                            R$ 249
+                            R$ 499
                             <span>/mês</span>
                         </div>
 
                         <ul>
-                            <li>✓ Até 10.000 clientes</li>
+                            <li>✓ Até 50.000 clientes</li>
                             <li>✓ Inteligência artificial</li>
-                            <li>✓ Campanhas automáticas</li>
                             <li>✓ Ofertas personalizadas</li>
+                            <li>✓ Automação completa</li>
                             <li>✓ Relatórios avançados</li>
                         </ul>
 
-                        <a href="cadastro.html" class="btn btn-primary full">
-                            Começar agora
+                        <a href="#" class="btn btn-primary full">
+                            Começar
                         </a>
 
-                    </article>
+                    </div>
 
 
-                    <article class="pricing-card">
+                    <div class="pricing-card">
 
                         <h3>
                             Enterprise
@@ -682,15 +663,16 @@
                         <ul>
                             <li>✓ Clientes ilimitados</li>
                             <li>✓ IA avançada</li>
-                            <li>✓ Integrações personalizadas</li>
+                            <li>✓ Integrações</li>
+                            <li>✓ API</li>
                             <li>✓ Suporte dedicado</li>
                         </ul>
 
-                        <a href="cadastro.html" class="btn btn-secondary full">
-                            Falar com a equipe
+                        <a href="#" class="btn btn-secondary full">
+                            Falar conosco
                         </a>
 
-                    </article>
+                    </div>
 
                 </div>
 
@@ -706,20 +688,20 @@
             <div class="container cta-content">
 
                 <span class="eyebrow">
-                    DemocInfo
+                    RETENÇÃO INTELIGENTE
                 </span>
 
                 <h2>
-                    Pare de esperar o cliente
-                    <span>sumir.</span>
+                    Seus próximos clientes
+                    <span>podem estar prestes a desaparecer.</span>
                 </h2>
 
                 <p>
-                    Use seus dados para entender seus clientes e automatizar
-                    ações de retenção no momento certo.
+                    Identifique o risco, personalize a oferta e automatize
+                    sua estratégia de retenção.
                 </p>
 
-                <a href="cadastro.html" class="btn btn-primary btn-large">
+                <a href="#planos" class="btn btn-primary btn-large">
                     Começar agora
                 </a>
 
@@ -736,27 +718,23 @@
 
         <div class="container footer-content">
 
-            <div>
-                <a href="index.html" class="logo">
-                    Democ<span>Info</span>
-                </a>
+            <div class="logo">
+                Democ<span>Info</span>
             </div>
 
             <p>
-                © 2026 DemocInfo. Todos os direitos reservados.
+                Retenção inteligente para empresas.
             </p>
 
             <span>
-                Retenção inteligente para empresas.
+                © 2026 DemocInfos. Todos os direitos reservados.
             </span>
 
         </div>
 
     </footer>
 
-
-    <script src="auth.js"></script>
+    <script src="script.js"></script>
 
 </body>
-</html>
-```
+</html> 

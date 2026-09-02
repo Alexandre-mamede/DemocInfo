@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -6,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Entrar | DemocInfo</title>
+    <title>Login | DemocInfo</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -29,7 +28,7 @@
                     Ainda não possui uma conta?
                 </span>
 
-                <a href="cadastro.html" class="btn btn-primary">
+                <a href="cadastro.html" class="btn btn-secondary">
                     Criar conta
                 </a>
 
@@ -49,7 +48,7 @@
             <div class="auth-header">
 
                 <span class="eyebrow">
-                    DemocInfo
+                    DEMOCINFO
                 </span>
 
                 <h1>
@@ -57,7 +56,7 @@
                 </h1>
 
                 <p>
-                    Entre na sua conta para acessar a plataforma.
+                    Acesse sua conta para continuar.
                 </p>
 
             </div>
@@ -75,7 +74,7 @@
                         type="email"
                         id="email"
                         name="email"
-                        placeholder="empresa@exemplo.com"
+                        placeholder="seu@email.com"
                         required
                     >
 
@@ -86,20 +85,20 @@
 
                     <div class="password-label">
 
-                        <label for="password">
+                        <label for="senha">
                             Senha
                         </label>
 
                         <a href="#">
-                            Esqueceu a senha?
+                            Esqueci minha senha
                         </a>
 
                     </div>
 
                     <input
                         type="password"
-                        id="password"
-                        name="password"
+                        id="senha"
+                        name="senha"
                         placeholder="Digite sua senha"
                         required
                     >
@@ -113,10 +112,12 @@
 
                         <input
                             type="checkbox"
-                            id="remember"
+                            id="lembrar"
                         >
 
-                        Lembrar de mim
+                        <span>
+                            Lembrar de mim
+                        </span>
 
                     </label>
 
@@ -132,18 +133,27 @@
 
 
                 <div class="auth-divider">
-                    ou
+                    <span>ou</span>
                 </div>
 
 
+                <a
+                    href="cadastro.html"
+                    class="btn btn-secondary btn-large full"
+                >
+                    Criar uma conta
+                </a>
+
+
                 <p class="auth-footer-text">
-
-                    Ainda não possui uma conta?
-
-                    <a href="cadastro.html">
-                        Criar conta
+                    Ao continuar, você concorda com nossos
+                    <a href="#">
+                        termos de uso
                     </a>
-
+                    e
+                    <a href="#">
+                        política de privacidade
+                    </a>.
                 </p>
 
             </form>
@@ -159,12 +169,12 @@
 
         <div class="container footer-content">
 
-            <span>
-                © 2026 DemocInfo
-            </span>
+            <div class="logo">
+                Democ<span>Info</span>
+            </div>
 
             <span>
-                Retenção inteligente para empresas.
+                © 2026 DemocInfo. Todos os direitos reservados.
             </span>
 
         </div>
@@ -172,8 +182,8 @@
     </footer>
 
 
-    <script src="auth.js"></script>
+    <script src="script.js"></script>
 
 </body>
+
 </html>
-```
