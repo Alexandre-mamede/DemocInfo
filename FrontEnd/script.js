@@ -76,3 +76,34 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
     });
 
 });         
+// =========================================================
+// DIRECIONAMENTO INTELIGENTE DOS BOTÕES DE COMEÇAR (PLANOS)
+// =========================================================
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Seleciona todos os botões que iniciam a jornada (nos planos ou hero)
+    const actionButtons = document.querySelectorAll('.pricing-card .btn, .hero-buttons .btn-primary, .nav-actions .btn-primary');
+
+    actionButtons.forEach((button) => {
+        // Verifica se o botão é de "Começar" ou "Falar conosco" (opcionalmente ajustando links de planos)
+        const href = button.getAttribute("href");
+        
+        if (href && (href.includes("#planos") || href.includes("cadastro.html"))) {
+            button.addEventListener("click", (event) => {
+                event.preventDefault();
+
+                // Verifica no navegador se existe um usuário logado 
+                // (Você pode salvar algo como `localStorage.setItem('usuarioLogado', 'true')` na sua tela de login)
+                const usuarioLogado = localStorage.getItem("usuarioLogado");
+
+                if (usuarioLogado === "true") {
+                    // Se já estiver logado, redireciona para a tela de dashboard/painel
+                    window.location.href = "dashboard.html"; // Crie essa página ou aponte para a interna desejada
+                } else {
+                    // Se não estiver logado, redireciona para a tela de login/cadastro
+                    window.location.href = "login.html";
+                }
+            });
+        }
+    });
+});
