@@ -22,6 +22,9 @@
             <a href="#" class="nav-item active" data-target="visao-geral">
                 <span class="nav-icon">📊</span> Visão Geral
             </a>
+            <a href="#" class="nav-item" data-target="adicionar-cliente">
+                <span class="nav-icon">＋</span> Adicionar Cliente
+            </a>
             <a href="#" class="nav-item" data-target="clientes-risco">
                 <span class="nav-icon">⚠️</span> Clientes em Risco
             </a>
@@ -63,6 +66,7 @@
             </div>
         </header>
 
+
         <!-- CONTEÚDO DAS ABAS -->
 
         <!-- 1. VISÃO GERAL -->
@@ -96,7 +100,7 @@
                     </div>
 
                     <div id="listaClientesVazia" style="padding: 30px; text-align: center; color: var(--text-muted); font-size: 13px;">
-                        Nenhum cliente em risco detectado no momento. Sua base está estável! 🎉
+                        Nenhum cliente em risco detectado no momento. <a href="#" onclick="mudarAbaPara('adicionar-cliente')" style="color: var(--primary-light);">Adicione clientes</a> para testar a IA!
                     </div>
                     
                     <div id="listaClientesContainer"></div>
@@ -107,46 +111,87 @@
                     <div>
                         <span>RECOMENDAÇÃO DA IA</span>
                         <strong id="aiRecTitulo">Aguardando novos dados</strong>
-                        <p id="aiRecDesc">Conecte sua base de clientes para começar a receber estratégias automáticas de retenção.</p>
+                        <p id="aiRecDesc">Adicione clientes na aba lateral para começar a receber estratégias automáticas de retenção.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 2. CLIENTES EM RISCO -->
+
+        <!-- 2. ADICIONAR CLIENTE (NOVA ABA INTERATIVA) -->
+        <section id="adicionar-cliente" class="tab-content">
+            <div class="section-title" style="margin-bottom: 25px;">
+                <span class="eyebrow">CADASTRO INTELIGENTE</span>
+                <h2>Adicionar Novo Cliente</h2>
+                <p>Insira os dados de atividade do cliente. A inteligência artificial calculará o risco de churn automaticamente.</p>
+            </div>
+
+            <div class="auth-container" style="max-width: 100%; margin: 0; background: rgba(255,255,255,0.02); border: 1px solid var(--border);">
+                <form class="auth-form" id="formAdicionarCliente">
+                    <div class="form-group">
+                        <label for="nomeCliente">Nome Completo</label>
+                        <input type="text" id="nomeCliente" placeholder="Ex: Lucas Mendes" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="emailCliente">E-mail do Cliente</label>
+                        <input type="email" id="emailCliente" placeholder="lucas@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="diasInativo">Dias sem realizar compras / sem atividade</label>
+                        <input type="number" id="diasInativo" placeholder="Ex: 22" min="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="valorUltimaCompra">Valor da Última Compra (R$)</label>
+                        <input type="text" id="valorUltimaCompra" placeholder="Ex: 350,00" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-large full" style="margin-top: 10px;">
+                        Analisar com IA e Cadastrar
+                    </button>
+                </form>
+            </div>
+        </section>
+
+
+        <!-- 3. CLIENTES EM RISCO -->
         <section id="clientes-risco" class="tab-content">
             <div class="section-title" style="margin-bottom: 25px;">
                 <span class="eyebrow">Monitoramento Detalhado</span>
                 <h2>Todos os Clientes em Risco de Churn</h2>
-                <p>Lista gerada pela nossa inteligência comportamental.</p>
+                <p>Lista gerada e classificada pela nossa inteligência comportamental.</p>
             </div>
             <div class="risk-section" style="background: rgba(255,255,255,0.015);" id="listaCompletaRisco">
                 <p style="color: var(--text-muted); font-size: 13px; text-align: center; padding: 20px;">Nenhum registro encontrado.</p>
             </div>
         </section>
 
-        <!-- 3. INSIGHTS DE IA -->
+
+        <!-- 4. INSIGHTS DE IA -->
         <section id="ia-insights" class="tab-content">
             <div class="section-title" style="margin-bottom: 25px;">
                 <span class="eyebrow">Inteligência Artificial</span>
                 <h2>Relatórios e Padrões Comportamentais</h2>
-                <p>Análises preditivas profundas.</p>
+                <p>Análises preditivas baseadas na sua base cadastrada.</p>
             </div>
             <div class="stats-grid">
                 <div class="stat-card">
                     <span class="stat-title">Taxa Média de Retenção</span>
                     <strong id="insightRetencao">100%</strong>
-                    <small class="positive">Base limpa</small>
+                    <small class="positive">Monitoramento contínuo</small>
                 </div>
                 <div class="stat-card">
                     <span class="stat-title">Janela Crítica</span>
-                    <strong>-- Dias</strong>
-                    <small class="negative">Sem dados suficientes</small>
+                    <strong id="insightJanela">-- Dias</strong>
+                    <small class="negative">Base em análise</small>
                 </div>
             </div>
         </section>
 
-        <!-- 4. ASSINAR PLANO -->
+
+        <!-- 5. ASSINAR PLANO -->
         <section id="assinar-plano" class="tab-content">
             <div class="section-title center" style="margin-bottom: 35px;">
                 <span class="eyebrow">PLANOS E ASSINATURAS</span>
@@ -188,7 +233,8 @@
             </div>
         </section>
 
-        <!-- 5. CONFIGURAÇÕES -->
+
+        <!-- 6. CONFIGURAÇÕES -->
         <section id="configuracoes" class="tab-content">
             <div class="section-title" style="margin-bottom: 25px;">
                 <span class="eyebrow">CONTA & SISTEMA</span>
@@ -212,46 +258,56 @@
 
     </main>
 
-    <!-- SCRIPT DE CONTROLE DINÂMICO DO DASHBOARD -->
+    <!-- SCRIPT DE CONTROLE DINÂMICO E INTEGRAÇÃO DOS CLIENTES -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            // Recupera o usuário logado atual
             const usuarioStr = localStorage.getItem("democinfo_usuario_logado");
-            if (usuarioStr) {
-                const user = JSON.parse(usuarioStr);
-                
-                // Preenche o nome da empresa na Sidebar e Topbar
-                document.getElementById("sidebarEmpresaNome").textContent = user.empresa || "Minha Empresa";
-                document.getElementById("topbarEmpresaNome").textContent = user.empresa || "Minha Empresa";
-                document.getElementById("configEmpresaInput").value = user.empresa || "";
-                document.getElementById("configEmailInput").value = user.email || "";
-                
-                // Define as iniciais no avatar
-                if (user.empresa) {
-                    const iniciais = user.empresa.substring(0, 2).toUpperCase();
-                    document.getElementById("userAvatarLetter").textContent = iniciais;
-                }
-
-                // Se for a conta ADMIN de exemplo, injeta dados fictícios para demonstração
-                if (user.isAdmin) {
-                    document.getElementById("statAnalisados").textContent = "8.421";
-                    document.getElementById("statEmRisco").textContent = "728";
-                    document.getElementById("statRecuperados").textContent = "1.284";
-                    document.getElementById("insightRetencao").textContent = "94.2%";
-                    document.getElementById("aiRecTitulo").textContent = "Disparar oferta para João Silva";
-                    document.getElementById("aiRecDesc").textContent = "O algoritmo detectou 82% de chance de churn. Enviar cupom de 10%.";
-                    
-                    document.getElementById("listaClientesVazia").style.display = "none";
-                    document.getElementById("listaClientesContainer").innerHTML = `
-                        <div class="customer"><div class="customer-avatar">JS</div><div class="customer-info"><strong>João Silva</strong><span>27 dias sem comprar</span></div><div class="risk high">82% Risco</div></div>
-                        <div class="customer"><div class="customer-avatar">MS</div><div class="customer-info"><strong>Maria Santos</strong><span>24 dias sem comprar</span></div><div class="risk high">76% Risco</div></div>
-                    `;
-                    document.getElementById("listaCompletaRisco").innerHTML = `
-                        <div class="customer" style="padding: 15px 0;"><div class="customer-avatar">JS</div><div class="customer-info"><strong>João Silva</strong><span>Última compra: R$ 450,00 • 27 dias inativo</span></div><div class="risk high">82% Risco</div></div>
-                        <div class="customer" style="padding: 15px 0;"><div class="customer-avatar">MS</div><div class="customer-info"><strong>Maria Santos</strong><span>Última compra: R$ 1.200,00 • 24 dias inativo</span></div><div class="risk high">76% Risco</div></div>
-                    `;
-                }
+            if (!usuarioStr) return;
+            
+            const user = JSON.parse(usuarioStr);
+            
+            // Inicializa estrutura de clientes na sessão do usuário se não existir
+            if (!user.clientes) {
+                // Se for admin de exemplo, injeta dados iniciais, senão começa vazio
+                user.clientes = user.isAdmin ? [
+                    { nome: "João Silva", email: "joao@email.com", dias: 27, valor: "450,00" },
+                    { nome: "Maria Santos", email: "maria@email.com", dias: 24, valor: "1.200,00" }
+                ] : [];
+                salvarUsuario(user);
             }
+
+            // Exibe dados na interface
+            document.getElementById("sidebarEmpresaNome").textContent = user.empresa || "Minha Empresa";
+            document.getElementById("topbarEmpresaNome").textContent = user.empresa || "Minha Empresa";
+            document.getElementById("configEmpresaInput").value = user.empresa || "";
+            document.getElementById("configEmailInput").value = user.email || "";
+            
+            if (user.empresa) {
+                document.getElementById("userAvatarLetter").textContent = user.empresa.substring(0, 2).toUpperCase();
+            }
+
+            atualizarDashboard(user);
+
+            // --- CADASTRAR NOVO CLIENTE ---
+            const formCliente = document.getElementById("formAdicionarCliente");
+            formCliente.addEventListener("submit", (e) => {
+                e.preventDefault();
+
+                const nome = document.getElementById("nomeCliente").value.trim();
+                const email = document.getElementById("emailCliente").value.trim();
+                const dias = parseInt(document.getElementById("diasInativo").value);
+                const valor = document.getElementById("valorUltimaCompra").value.trim();
+
+                // Adiciona o cliente na lista
+                user.clientes.push({ nome, email, dias, valor });
+                salvarUsuario(user);
+
+                // Limpa formulário e redireciona para a visão geral
+                formCliente.reset();
+                alert("Cliente analisado e adicionado com sucesso!");
+                mudarAbaPara('visao-geral');
+                atualizarDashboard(user);
+            });
 
             // Alternância de abas
             const navItems = document.querySelectorAll('.sidebar-nav .nav-item');
@@ -276,6 +332,71 @@
                 window.location.href = 'login.html';
             });
         });
+
+        // Função que recalcula e atualiza todas as telas com base nos clientes cadastrados
+        function atualizarDashboard(user) {
+            const totalAnalisados = user.clientes.length * 42 + (user.isAdmin ? 8300 : 0); // Fator simulado de volume
+            const clientesRisco = user.clientes.filter(c => c.dias >= 15); // Considera risco com 15+ dias inativo
+
+            document.getElementById("statAnalisados").textContent = totalAnalisados.toLocaleString('pt-BR');
+            document.getElementById("statEmRisco").textContent = clientesRisco.length;
+            document.getElementById("statRecuperados").textContent = user.isAdmin ? "1.284" : Math.floor(user.clientes.length * 0.3);
+
+            const containerVazia = document.getElementById("listaClientesVazia");
+            const containerLista = document.getElementById("listaClientesContainer");
+            const containerCompleto = document.getElementById("listaCompletaRisco");
+
+            if (user.clientes.length === 0) {
+                containerVazia.style.display = "block";
+                containerLista.innerHTML = "";
+                containerCompleto.innerHTML = `<p style="color: var(--text-muted); font-size: 13px; text-align: center; padding: 20px;">Nenhum registro encontrado. <a href="#" onclick="mudarAbaPara('adicionar-cliente')" style="color: var(--primary-light);">Adicionar cliente</a></p>`;
+                
+                document.getElementById("aiRecTitulo").textContent = "Aguardando novos dados";
+                document.getElementById("aiRecDesc").textContent = "Adicione clientes na aba lateral para começar a receber estratégias automáticas.";
+            } else {
+                containerVazia.style.display = "none";
+                
+                // Gera HTML para Visão Geral (recentes)
+                let htmlRecentes = "";
+                let htmlCompleto = "";
+
+                user.clientes.forEach(c => {
+                    const iniciais = c.nome.substring(0, 2).toUpperCase();
+                    const riscoPct = Math.min(50 + (c.dias * 1.5), 98).toFixed(0);
+                    const classeRisco = riscoPct >= 75 ? "high" : "medium";
+                    const textoRisco = riscoPct >= 75 ? "Alto Risco" : "Médio Risco";
+
+                    htmlCompleto += `
+                        <div class="customer" style="padding: 15px 0;">
+                            <div class="customer-avatar">${iniciais}</div>
+                            <div class="customer-info">
+                                <strong>${c.nome}</strong>
+                                <span>Última compra: R$ ${c.valor} • ${c.dias} dias inativo (${c.email})</span>
+                            </div>
+                            <div class="risk ${classeRisco}">${riscoPct}% (${textoRisco})</div>
+                        </div>
+                    `;
+                });
+
+                containerLista.innerHTML = htmlCompleto;
+                containerCompleto.innerHTML = htmlCompleto;
+
+                // Atualiza recomendação da IA com base no primeiro cliente em risco
+                if (clientesRisco.length > 0) {
+                    const alvo = clientesRisco[0];
+                    document.getElementById("aiRecTitulo").textContent = `Disparar oferta para ${alvo.nome}`;
+                    document.getElementById("aiRecDesc").textContent = `O algoritmo detectou inatividade de ${alvo.dias} dias. Recomendado envio de cupom de 10% OFF.`;
+                } else {
+                    document.getElementById("aiRecTitulo").textContent = "Base saudável";
+                    document.getElementById("aiRecDesc").textContent = "Nenhum sinal crítico de churn detectado nos clientes cadastrados.";
+                }
+            }
+        }
+
+        function salvarUsuario(user) {
+            localStorage.setItem("democinfo_usuario_logado", JSON.stringify(user));
+            // Se for usuário comum, atualiza também no registro geral se houver
+        }
 
         function mudarAbaPara(targetId) {
             document.querySelectorAll('.sidebar-nav .nav-item').forEach(nav => {
