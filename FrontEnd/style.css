@@ -615,6 +615,11 @@ a {
     color: var(--warning);
 }
 
+.risk.low {
+    background: rgba(53, 214, 155, 0.1);
+    color: var(--success);
+}
+
 
 /* AI CARD */
 
