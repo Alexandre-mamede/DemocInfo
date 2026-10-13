@@ -1,23 +1,28 @@
 // =========================================================
-// LÓGICA DE CADASTRO, LOGIN E GERENCIAMENTO DE USUÁRIOS
+// BANCO DE DADOS LOCAL E AUTENTICAÇÃO (DEMOCINFO)
 // =========================================================
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    // --- GARANTIR CONTA ADMIN DE EXEMPLO NO SISTEMA ---
-    if (!localStorage.getItem("democinfo_admin_criado")) {
-        const contaAdmin = {
-            empresa: "DemocInfo Inc",
-            nome: "Administrador",
-            email: "admin@democinfo.com",
-            senha: "admin123",
-            isAdmin: true
-        };
-        localStorage.setItem("democinfo_admin", JSON.stringify(contaAdmin));
-        localStorage.setItem("democinfo_admin_criado", "true");
+    // Inicializa a base de usuários no localStorage se não existir
+    if (!localStorage.getItem("democinfo_db_usuarios")) {
+        const usuariosIniciais = [
+            {
+                empresa: "DemocInfo Corp",
+                nome: "Administrador",
+                email: "admin@democinfo.com",
+                senha: "admin123",
+                isAdmin: true,
+                clientes: [
+                    { nome: "João Silva", email: "joao@email.com", dias: 27, valor: "450,00" },
+                    { nome: "Maria Santos", email: "maria@email.com", dias: 24, valor: "1.200,00" }
+                ]
+            }
+        ];
+        localStorage.setItem("democinfo_db_usuarios", JSON.stringify(usuariosIniciais));
     }
 
-    // --- 1. PROCESSAR CADASTRO (CONTA NOVA VAZIA) ---
+    // --- 1. PROCESSAR CADASTRO ---
     const cadastroForm = document.getElementById("cadastroForm");
     if (cadastroForm) {
         cadastroForm.addEventListener("submit", (e) => {
@@ -34,26 +39,34 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            // Cria o objeto do usuário comum (com dados vazios para o dashboard)
+            let usuarios = JSON.parse(localStorage.getItem("democinfo_db_usuarios"));
+
+            // Verifica se o e-mail já está cadastrado
+            const existe = usuarios.find(u => u.email === email);
+            if (existe) {
+                alert("Este e-mail já está cadastrado. Faça login.");
+                window.location.href = "login.html";
+                return;
+            }
+
+            // Cria novo usuário com base de clientes vazia
             const novoUsuario = {
                 empresa,
                 nome,
                 email,
                 senha,
                 isAdmin: false,
-                dadosDashboard: {
-                    analisados: 0,
-                    emRisco: 0,
-                    recuperados: 0,
-                    clientesRiscoLista: []
-                }
+                clientes: []
             };
 
-            // Salva como usuário logado atual e armazena na lista de cadastros
-            localStorage.setItem("democinfo_usuario_logado", JSON.stringify(novoUsuario));
+            usuarios.push(novoUsuario);
+            localStorage.setItem("democinfo_db_usuarios", JSON.stringify(usuarios));
+
+            // Define a sessão ativa
+            localStorage.setItem("democinfo_usuario_logado_email", email);
             localStorage.setItem("usuarioLogado", "true");
 
-            alert("Conta criada com sucesso! Redirecionando para o painel...");
+            alert("Conta criada com sucesso! Redirecionando...");
             window.location.href = "dashboard.html";
         });
     }
@@ -67,32 +80,25 @@ document.addEventListener("DOMContentLoaded", () => {
             const emailInput = document.getElementById("email").value.trim();
             const senhaInput = document.getElementById("senha").value.trim();
 
-            const adminSalvo = JSON.parse(localStorage.getItem("democinfo_admin"));
-            const usuarioCustomizado = JSON.parse(localStorage.getItem("democinfo_usuario_logado"));
+            let usuarios = JSON.parse(localStorage.getItem("democinfo_db_usuarios"));
 
-            // Verifica se é o Admin de exemplo
-            if (emailInput === adminSalvo.email && senhaInput === adminSalvo.senha) {
-                localStorage.setItem("democinfo_usuario_logado", JSON.stringify(adminSalvo));
+            const usuarioEncontrado = usuarios.find(u => u.email === emailInput && u.senha === senhaInput);
+
+            if (usuarioEncontrado) {
+                localStorage.setItem("democinfo_usuario_logado_email", usuarioEncontrado.email);
                 localStorage.setItem("usuarioLogado", "true");
                 window.location.href = "dashboard.html";
-                return;
+            } else {
+                alert("E-mail ou senha incorretos.");
             }
-
-            // Verifica se é um usuário cadastrado comum
-            if (usuarioCustomizado && emailInput === usuarioCustomizado.email && senhaInput === usuarioCustomizado.senha) {
-                localStorage.setItem("usuarioLogado", "true");
-                window.location.href = "dashboard.html";
-                return;
-            }
-
-            alert("E-mail ou senha incorretos.");
         });
     }
 
     // --- 3. PROTEGER O DASHBOARD ---
     if (window.location.pathname.includes("dashboard.html")) {
         const logado = localStorage.getItem("usuarioLogado");
-        if (logado !== "true") {
+        const emailLogado = localStorage.getItem("democinfo_usuario_logado_email");
+        if (logado !== "true" || !emailLogado) {
             alert("Você precisa fazer login para acessar o painel.");
             window.location.href = "login.html";
         }

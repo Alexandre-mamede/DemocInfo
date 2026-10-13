@@ -202,7 +202,7 @@
                 <div class="pricing-card">
                     <h3>Starter</h3>
                     <p>Para pequenas empresas.</p>
-                    <div class="price">R$ 127 <span>/mês</span></div>
+                    <div class="price">R$ 199 <span>/mês</span></div>
                     <ul>
                         <li>✓ Até 5.000 clientes</li>
                         <li>✓ Análise de comportamento</li>
@@ -213,7 +213,7 @@
                     <div class="popular">MAIS POPULAR</div>
                     <h3>Professional</h3>
                     <p>Para empresas em crescimento.</p>
-                    <div class="price">R$ 399 <span>/mês</span></div>
+                    <div class="price">R$ 499 <span>/mês</span></div>
                     <ul>
                         <li>✓ Até 50.000 clientes</li>
                         <li>✓ Inteligência artificial completa</li>
@@ -242,14 +242,14 @@
                 <p>Gerencie seus dados corporativos.</p>
             </div>
             <div class="auth-container" style="max-width: 100%; margin: 0; background: rgba(255,255,255,0.02); border: 1px solid var(--border);">
-                <form class="auth-form" onsubmit="event.preventDefault(); alert('Configurações salvas!');">
+                <form class="auth-form" id="configForm">
                     <div class="form-group">
                         <label>Nome da Empresa</label>
-                        <input type="text" id="configEmpresaInput" value="">
+                        <input type="text" id="configEmpresaInput" required>
                     </div>
                     <div class="form-group">
                         <label>E-mail do Administrador</label>
-                        <input type="email" id="configEmailInput" value="">
+                        <input type="email" id="configEmailInput" required>
                     </div>
                     <button type="submit" class="btn btn-primary" style="width: auto;">Salvar Alterações</button>
                 </form>
@@ -258,22 +258,18 @@
 
     </main>
 
-    <!-- SCRIPT DE CONTROLE DINÂMICO E INTEGRAÇÃO DOS CLIENTES -->
+    <!-- SCRIPT DE CONTROLE DINÂMICO E BANCO DE DADOS LOCAL -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const usuarioStr = localStorage.getItem("democinfo_usuario_logado");
-            if (!usuarioStr) return;
-            
-            const user = JSON.parse(usuarioStr);
-            
-            if (!user.clientes) {
-                user.clientes = user.isAdmin ? [
-                    { nome: "João Silva", email: "joao@email.com", dias: 27, valor: "450,00" },
-                    { nome: "Maria Santos", email: "maria@email.com", dias: 24, valor: "1.200,00" }
-                ] : [];
-                salvarUsuario(user);
-            }
+            const emailLogado = localStorage.getItem("democinfo_usuario_logado_email");
+            if (!emailLogado) return;
 
+            let usuarios = JSON.parse(localStorage.getItem("democinfo_db_usuarios")) || [];
+            let user = usuarios.find(u => u.email === emailLogado);
+
+            if (!user) return;
+
+            // Exibe dados da empresa logada
             document.getElementById("sidebarEmpresaNome").textContent = user.empresa || "Minha Empresa";
             document.getElementById("topbarEmpresaNome").textContent = user.empresa || "Minha Empresa";
             document.getElementById("configEmpresaInput").value = user.empresa || "";
@@ -285,6 +281,7 @@
 
             atualizarDashboard(user);
 
+            // Adicionar Novo Cliente salvando no Database
             const formCliente = document.getElementById("formAdicionarCliente");
             formCliente.addEventListener("submit", (e) => {
                 e.preventDefault();
@@ -295,7 +292,9 @@
                 const valor = document.getElementById("valorUltimaCompra").value.trim();
 
                 user.clientes.push({ nome, email, dias, valor });
-                salvarUsuario(user);
+                
+                // Atualiza o banco de dados geral
+                salvarNoDatabase(usuarios, user);
 
                 formCliente.reset();
                 alert("Cliente analisado e adicionado com sucesso!");
@@ -303,6 +302,26 @@
                 atualizarDashboard(user);
             });
 
+            // Salvar Configurações
+            const configForm = document.getElementById("configForm");
+            configForm.addEventListener("submit", (e) => {
+                e.preventDefault();
+                user.empresa = document.getElementById("configEmpresaInput").value.trim();
+                user.email = document.getElementById("configEmailInput").value.trim();
+
+                salvarNoDatabase(usuarios, user);
+                localStorage.setItem("democinfo_usuario_logado_email", user.email);
+
+                document.getElementById("sidebarEmpresaNome").textContent = user.empresa;
+                document.getElementById("topbarEmpresaNome").textContent = user.empresa;
+                if (user.empresa) {
+                    document.getElementById("userAvatarLetter").textContent = user.empresa.substring(0, 2).toUpperCase();
+                }
+
+                alert("Configurações salvas com sucesso!");
+            });
+
+            // Alternância de abas
             const navItems = document.querySelectorAll('.sidebar-nav .nav-item');
             const tabContents = document.querySelectorAll('.dashboard-main .tab-content');
 
@@ -320,24 +339,26 @@
 
             document.getElementById('logoutBtn').addEventListener('click', () => {
                 localStorage.removeItem('usuarioLogado');
-                localStorage.removeItem('democinfo_usuario_logado');
+                localStorage.removeItem('democinfo_usuario_logado_email');
                 window.location.href = 'login.html';
             });
         });
 
         function atualizarDashboard(user) {
-            const totalAnalisados = user.clientes.length * 42 + (user.isAdmin ? 8300 : 0);
+            const totalCadastrados = user.clientes.length;
+            const totalAnalisados = user.isAdmin ? 8300 + totalCadastrados : totalCadastrados;
             const clientesRisco = user.clientes.filter(c => c.dias >= 15);
+            const totalRecuperados = user.isAdmin ? 1284 : Math.floor(totalCadastrados * 0.3);
 
             document.getElementById("statAnalisados").textContent = totalAnalisados.toLocaleString('pt-BR');
             document.getElementById("statEmRisco").textContent = clientesRisco.length;
-            document.getElementById("statRecuperados").textContent = user.isAdmin ? "1.284" : Math.floor(user.clientes.length * 0.3);
+            document.getElementById("statRecuperados").textContent = totalRecuperados.toLocaleString('pt-BR');
 
             const containerVazia = document.getElementById("listaClientesVazia");
             const containerLista = document.getElementById("listaClientesContainer");
             const containerCompleto = document.getElementById("listaCompletaRisco");
 
-            if (user.clientes.length === 0) {
+            if (totalCadastrados === 0) {
                 containerVazia.style.display = "block";
                 containerLista.innerHTML = "";
                 containerCompleto.innerHTML = `<p style="color: var(--text-muted); font-size: 13px; text-align: center; padding: 20px;">Nenhum registro encontrado. <a href="#" onclick="mudarAbaPara('adicionar-cliente')" style="color: var(--primary-light);">Adicionar cliente</a></p>`;
@@ -352,18 +373,16 @@
                 user.clientes.forEach(c => {
                     const iniciais = c.nome.substring(0, 2).toUpperCase();
                     
-                    // Lógica de risco proporcional ajustada e corrigida
                     let riscoPct;
                     if (c.dias <= 7) {
-                        riscoPct = c.dias * 3; // 1 dia = 3%, 7 dias = 21%
+                        riscoPct = c.dias * 3;
                     } else if (c.dias <= 20) {
-                        riscoPct = 25 + (c.dias - 7) * 2; // Crescimento moderado
+                        riscoPct = 25 + (c.dias - 7) * 2;
                     } else {
-                        riscoPct = Math.min(50 + ((c.dias - 20) * 2.5), 98); // Risco alto após muita inatividade
+                        riscoPct = Math.min(50 + ((c.dias - 20) * 2.5), 98);
                     }
                     riscoPct = riscoPct.toFixed(0);
 
-                    // Classificação visual correta
                     let classeRisco = "low";
                     let textoRisco = "Baixo Risco";
                     if (riscoPct >= 75) {
@@ -400,8 +419,12 @@
             }
         }
 
-        function salvarUsuario(user) {
-            localStorage.setItem("democinfo_usuario_logado", JSON.stringify(user));
+        function salvarNoDatabase(usuarios, usuarioAtualizado) {
+            const index = usuarios.findIndex(u => u.email === usuarioAtualizado.email);
+            if (index !== -1) {
+                usuarios[index] = usuarioAtualizado;
+                localStorage.setItem("democinfo_db_usuarios", JSON.stringify(usuarios));
+            }
         }
 
         function mudarAbaPara(targetId) {
