@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | DemocInfo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="dashboard-body">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="dashboard.html" class="logo">
+                Democ<span>Info</span>
+            </a>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active" data-target="visao-geral">
+                <span class="nav-icon">📊</span> Visão Geral
+            </a>
+            <a href="#" class="nav-item" data-target="clientes-risco">
+                <span class="nav-icon">⚠️</span> Clientes em Risco
+            </a>
+            <a href="#" class="nav-item" data-target="ia-insights">
+                <span class="nav-icon">✦</span> Insights de IA
+            </a>
+            <a href="#" class="nav-item" data-target="assinar-plano">
+                <span class="nav-icon">💎</span> Assinar Plano
+            </a>
+            <a href="#" class="nav-item" data-target="configuracoes">
+                <span class="nav-icon">⚙️</span> Configurações
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-mini-profile">
+                <div class="user-avatar-mini">JS</div>
+                <div class="user-info-mini">
+                    <strong>João Silva</strong>
+                    <span>Plano Starter</span>
+                </div>
+            </div>
+            <button id="logoutBtn" class="btn-logout" title="Sair da conta">
+                Sair
+            </button>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT WRAPPER -->
+    <main class="dashboard-main">
+
+        <!-- TOPO / HEADER DO DASHBOARD -->
+        <header class="dash-topbar">
+            <div class="dash-welcome">
+                <h1>Painel de Controle</h1>
+                <p>Bem-vindo de volta, monitorando sua retenção em tempo real.</p>
+            </div>
+            <div class="dash-actions-top">
+                <span class="badge-active-ai">● IA Ativa e Monitorando</span>
+            </div>
+        </header>
+
+
+        <!-- CONTEÚDO DAS ABAS -->
+
+        <!-- 1. VISÃO GERAL -->
+        <section id="visao-geral" class="tab-content active">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-title">Clientes analisados</span>
+                    <strong>8.421</strong>
+                    <small class="positive">↑ 12,4% este mês</small>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-title">Clientes em risco</span>
+                    <strong>728</strong>
+                    <small class="negative">↑ 8,2% atenção</small>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-title">Clientes recuperados</span>
+                    <strong>1.284</strong>
+                    <small class="positive">↑ 21,7% sucesso</small>
+                </div>
+            </div>
+
+            <div class="dashboard-grid-content">
+                <div class="risk-section">
+                    <div class="section-header">
+                        <div>
+                            <span class="dashboard-label">URGENTE</span>
+                            <h4>Alertas Recentes de Abandono</h4>
+                        </div>
+                        <span class="view-all" onclick="mudarAbaPara('clientes-risco')">Ver todos</span>
+                    </div>
+
+                    <div class="customer">
+                        <div class="customer-avatar">JS</div>
+                        <div class="customer-info">
+                            <strong>João Silva</strong>
+                            <span>27 dias sem comprar</span>
+                        </div>
+                        <div class="risk high">82% Risco</div>
+                    </div>
+
+                    <div class="customer">
+                        <div class="customer-avatar">MS</div>
+                        <div class="customer-info">
+                            <strong>Maria Santos</strong>
+                            <span>24 dias sem comprar</span>
+                        </div>
+                        <div class="risk high">76% Risco</div>
+                    </div>
+
+                    <div class="customer">
+                        <div class="customer-avatar">CO</div>
+                        <div class="customer-info">
+                            <strong>Carlos Oliveira</strong>
+                            <span>19 dias sem comprar</span>
+                        </div>
+                        <div class="risk medium">64% Risco</div>
+                    </div>
+                </div>
+
+                <div class="ai-card">
+                    <div class="ai-icon">✦</div>
+                    <div>
+                        <span>RECOMENDAÇÃO DA IA</span>
+                        <strong>Disparar oferta para João Silva</strong>
+                        <p>O algoritmo detectou 82% de chance de churn. Enviar cupom de 10% via automação.</p>
+                        <button class="btn btn-primary" style="margin-top: 10px; font-size: 11px; min-height: 32px; padding: 0 14px;">Executar Ação</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 2. CLIENTES EM RISCO -->
+        <section id="clientes-risco" class="tab-content">
+            <div class="section-title" style="margin-bottom: 25px;">
+                <span class="eyebrow">Monitoramento Detalhado</span>
+                <h2>Todos os Clientes em Risco de Churn</h2>
+                <p>Lista completa gerada automaticamente pela nossa inteligência comportamental.</p>
+            </div>
+
+            <div class="risk-section" style="background: rgba(255,255,255,0.015);">
+                <div class="customer" style="padding: 15px 0;">
+                    <div class="customer-avatar">JS</div>
+                    <div class="customer-info">
+                        <strong>João Silva</strong>
+                        <span>Última compra: R$ 450,00 • 27 dias inativo</span>
+                    </div>
+                    <div class="risk high">82% Risco</div>
+                </div>
+                <div class="customer" style="padding: 15px 0;">
+                    <div class="customer-avatar">MS</div>
+                    <div class="customer-info">
+                        <strong>Maria Santos</strong>
+                        <span>Última compra: R$ 1.200,00 • 24 dias inativo</span>
+                    </div>
+                    <div class="risk high">76% Risco</div>
+                </div>
+                <div class="customer" style="padding: 15px 0;">
+                    <div class="customer-avatar">CO</div>
+                    <div class="customer-info">
+                        <strong>Carlos Oliveira</strong>
+                        <span>Última compra: R$ 320,00 • 19 dias inativo</span>
+                    </div>
+                    <div class="risk medium">64% Risco</div>
+                </div>
+                <div class="customer" style="padding: 15px 0;">
+                    <div class="customer-avatar">AP</div>
+                    <div class="customer-info">
+                        <strong>Ana Paula</strong>
+                        <span>Última compra: R$ 890,00 • 15 dias inativo</span>
+                    </div>
+                    <div class="risk medium">55% Risco</div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 3. INSIGHTS DE IA -->
+        <section id="ia-insights" class="tab-content">
+            <div class="section-title" style="margin-bottom: 25px;">
+                <span class="eyebrow">Inteligência Artificial</span>
+                <h2>Relatórios e Padrões Comportamentais</h2>
+                <p>Análises preditivas profundas de retenção de mercado.</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-title">Taxa Média de Retenção</span>
+                    <strong>94.2%</strong>
+                    <small class="positive">Acima da média do setor</small>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-title">Pico de Abandono</span>
+                    <strong>21 Dias</strong>
+                    <small class="negative">Janela crítica identificada</small>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-title">Eficácia dos Cupons</span>
+                    <strong>68.5%</strong>
+                    <small class="positive">Taxa de conversão em retorno</small>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 4. ASSINAR PLANO (NOVO) -->
+        <section id="assinar-plano" class="tab-content">
+            <div class="section-title center" style="margin-bottom: 35px;">
+                <span class="eyebrow">PLANOS E ASSINATURAS</span>
+                <h2>Evolua sua operação de retenção</h2>
+                <p>Escolha o plano ideal para desbloquear recursos avançados de IA e escala ilimitada.</p>
+            </div>
+
+            <div class="pricing-grid" style="max-width: 1000px; margin: 0 auto;">
+                <div class="pricing-card">
+                    <h3>Starter</h3>
+                    <p>Para pequenas empresas.</p>
+                    <div class="price">R$ 199 <span>/mês</span></div>
+                    <ul>
+                        <li>✓ Até 5.000 clientes</li>
+                        <li>✓ Análise de comportamento</li>
+                        <li>✓ Detecção de risco</li>
+                    </ul>
+                    <button class="btn btn-secondary full" onclick="alert('Você já está utilizando ou este plano é o atual!')">Plano Atual</button>
+                </div>
+
+                <div class="pricing-card featured">
+                    <div class="popular">MAIS POPULAR</div>
+                    <h3>Professional</h3>
+                    <p>Para empresas em crescimento.</p>
+                    <div class="price">R$ 499 <span>/mês</span></div>
+                    <ul>
+                        <li>✓ Até 50.000 clientes</li>
+                        <li>✓ Inteligência artificial completa</li>
+                        <li>✓ Ofertas personalizadas</li>
+                        <li>✓ Automação e relatórios</li>
+                    </ul>
+                    <button class="btn btn-primary full" onclick="alert('Redirecionando para o gateway de pagamento seguro...')">Fazer Upgrade</button>
+                </div>
+
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <p>Para grandes operações.</p>
+                    <div class="price">Personalizado</div>
+                    <ul>
+                        <li>✓ Clientes ilimitados</li>
+                        <li>✓ IA avançada sob medida</li>
+                        <li>✓ Suporte dedicado 24/7</li>
+                    </ul>
+                    <button class="btn btn-secondary full" onclick="alert('Solicitação enviada com sucesso! Entraremos em contato.')">Falar com Consultor</button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 5. CONFIGURAÇÕES -->
+        <section id="configuracoes" class="tab-content">
+            <div class="section-title" style="margin-bottom: 25px;">
+                <span class="eyebrow">CONTA & SISTEMA</span>
+                <h2>Configurações da Empresa</h2>
+                <p>Gerencie seus dados corporativos e credenciais de acesso.</p>
+            </div>
+
+            <div class="auth-container" style="max-width: 100%; margin: 0; background: rgba(255,255,255,0.02); border: 1px solid var(--border);">
+                <form class="auth-form" onsubmit="event.preventDefault(); alert('Configurações salvas com sucesso!');">
+                    <div class="form-group">
+                        <label>Nome da Empresa</label>
+                        <input type="text" value="Minha Empresa LTDA">
+                    </div>
+                    <div class="form-group">
+                        <label>E-mail do Administrador</label>
+                        <input type="email" value="contato@empresa.com">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: auto;">Salvar Alterações</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- SCRIPT DE NAVEGAÇÃO DAS ABAS E LOGOUT -->
+    <script>
+        // Lógica de alternância de abas da Sidebar
+        const navItems = document.querySelectorAll('.sidebar-nav .nav-item');
+        const tabContents = document.querySelectorAll('.dashboard-main .tab-content');
+
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Remove classe active de todos
+                navItems.forEach(nav => nav.classList.remove('active'));
+                tabContents.forEach(tab => tab.classList.remove('active'));
+
+                // Adiciona active no item clicado
+                item.classList.add('active');
+
+                // Mostra a aba correspondente
+                const targetId = item.getAttribute('data-target');
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+
+        // Função auxiliar para mudar de aba via botão interno
+        function mudarAbaPara(targetId) {
+            navItems.forEach(nav => {
+                if(nav.getAttribute('data-target') === targetId) {
+                    nav.click();
+                }
+            });
+        }
+
+        // Lógica de Logout
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            localStorage.removeItem('usuarioLogado');
+            window.location.href = 'login.html';
+        });
+    </script>
+
+</body>
+</html>
