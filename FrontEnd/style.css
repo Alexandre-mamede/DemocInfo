@@ -2923,3 +2923,26 @@ a {
         grid-template-columns: 1fr;
     }
 }
+/* =========================================================
+   ESTILO AMPLIADO PARA OS NÚMEROS DE PASSOS
+   ========================================================= */
+
+   .step-number,
+   .process-number {
+       font-size: 38px !important;
+       font-weight: 800 !important;
+       letter-spacing: -1.5px !important;
+       color: var(--primary-light) !important;
+       margin-bottom: 18px !important;
+       opacity: 0.9;
+   }
+   
+   .feature-number,
+   .process-number {
+       font-size: 38px !important;
+       font-weight: 800 !important;
+       letter-spacing: -1.5px !important;
+       color: var(--primary-light) !important;
+       margin-bottom: 18px !important;
+       opacity: 0.9;
+   }
