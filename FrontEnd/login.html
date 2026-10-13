@@ -4,186 +4,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Login | DemocInfo</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
-
     <header class="navbar">
-
         <div class="container navbar-content">
-
-            <a href="index.html" class="logo">
-                Democ<span>Info</span>
-            </a>
-
+            <a href="index.html" class="logo">Democ<span>Info</span></a>
             <div class="nav-actions">
-
-                <span class="login-text">
-                    Ainda não possui uma conta?
-                </span>
-
-                <a href="cadastro.html" class="btn btn-secondary">
-                    Criar conta
-                </a>
-
+                <span class="login-text">Ainda não possui uma conta?</span>
+                <a href="cadastro.html" class="btn btn-secondary">Criar conta</a>
             </div>
-
         </div>
-
     </header>
 
-
-    <!-- LOGIN -->
-
     <main class="auth-page">
-
         <div class="auth-container">
-
             <div class="auth-header">
-
-                <span class="eyebrow">
-                    DEMOCINFO
-                </span>
-
-                <h1>
-                    Bem-vindo de volta
-                </h1>
-
-                <p>
-                    Acesse sua conta para continuar.
-                </p>
-
+                <span class="eyebrow">DEMOCINFO</span>
+                <h1>Bem-vindo de volta</h1>
+                <p>Acesse sua conta para continuar.</p>
             </div>
 
-
+            <!-- Formulário de Login -->
             <form class="auth-form" id="loginForm">
-
                 <div class="form-group">
-
-                    <label for="email">
-                        E-mail
-                    </label>
-
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="seu@email.com"
-                        required
-                    >
-
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" placeholder="seu@email.com" required>
                 </div>
 
-
                 <div class="form-group">
-
                     <div class="password-label">
-
-                        <label for="senha">
-                            Senha
-                        </label>
-
-                        <a href="#">
-                            Esqueci minha senha
-                        </a>
-
+                        <label for="senha">Senha</label>
+                        <a href="#">Esqueci minha senha</a>
                     </div>
-
-                    <input
-                        type="password"
-                        id="senha"
-                        name="senha"
-                        placeholder="Digite sua senha"
-                        required
-                    >
-
+                    <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
                 </div>
-
 
                 <div class="remember-me">
-
                     <label>
-
-                        <input
-                            type="checkbox"
-                            id="lembrar"
-                        >
-
-                        <span>
-                            Lembrar de mim
-                        </span>
-
+                        <input type="checkbox" id="lembrar">
+                        <span>Lembrar de mim</span>
                     </label>
-
                 </div>
 
-
-                <button
-                    type="submit"
-                    class="btn btn-primary btn-large full"
-                >
+                <button type="submit" class="btn btn-primary btn-large full">
                     Entrar
                 </button>
-
 
                 <div class="auth-divider">
                     <span>ou</span>
                 </div>
 
-
-                <a
-                    href="cadastro.html"
-                    class="btn btn-secondary btn-large full"
-                >
+                <a href="cadastro.html" class="btn btn-secondary btn-large full">
                     Criar uma conta
                 </a>
 
-
                 <p class="auth-footer-text">
-                    Ao continuar, você concorda com nossos
-                    <a href="#">
-                        termos de uso
-                    </a>
-                    e
-                    <a href="#">
-                        política de privacidade
-                    </a>.
+                    Ao continuar, você concorda com nossos <a href="#">termos de uso</a> e <a href="#">política de privacidade</a>.
                 </p>
-
             </form>
-
         </div>
-
     </main>
 
-
-    <!-- FOOTER -->
-
     <footer class="footer">
-
         <div class="container footer-content">
-
-            <div class="logo">
-                Democ<span>Info</span>
-            </div>
-
-            <span>
-                © 2026 DemocInfo. Todos os direitos reservados.
-            </span>
-
+            <div class="logo">Democ<span>Info</span></div>
+            <span>© 2026 DemocInfo. Todos os direitos reservados.</span>
         </div>
-
     </footer>
 
-
-    <script src="script.js"></script>
-
+    <!-- Script de Autenticação -->
+    <script src="auth.js"></script>
 </body>
 
 </html>

@@ -4,194 +4,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Cadastro | DemocInfo</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
-
     <header class="navbar">
-
         <div class="container navbar-content">
-
-            <a href="index.html" class="logo">
-                Democ<span>Info</span>
-            </a>
-
+            <a href="index.html" class="logo">Democ<span>Info</span></a>
             <div class="nav-actions">
-
-                <span class="login-text">
-                    Já possui uma conta?
-                </span>
-
-                <a href="login.html" class="btn btn-secondary">
-                    Entrar
-                </a>
-
+                <span class="login-text">Já possui uma conta?</span>
+                <a href="login.html" class="btn btn-secondary">Entrar</a>
             </div>
-
         </div>
-
     </header>
 
-
-    <!-- CADASTRO -->
-
     <main class="auth-page">
-
         <div class="auth-container">
-
             <div class="auth-header">
-
-                <span class="eyebrow">
-                    DEMOCINFO
-                </span>
-
-                <h1>
-                    Crie sua conta
-                </h1>
-
-                <p>
-                    Comece a transformar seus dados em retenção inteligente.
-                </p>
-
+                <span class="eyebrow">DEMOCINFO</span>
+                <h1>Crie sua conta</h1>
+                <p>Comece a transformar seus dados em retenção inteligente.</p>
             </div>
 
-
+            <!-- Formulário com ID e evento de submit no JS -->
             <form class="auth-form" id="cadastroForm">
-
                 <div class="form-group">
-
-                    <label for="empresa">
-                        Empresa
-                    </label>
-
-                    <input
-                        type="text"
-                        id="empresa"
-                        name="empresa"
-                        placeholder="Nome da empresa"
-                        required
-                    >
-
+                    <label for="empresa">Empresa</label>
+                    <input type="text" id="empresa" name="empresa" placeholder="Nome da empresa" required>
                 </div>
 
-
                 <div class="form-group">
-
-                    <label for="nome">
-                        Nome
-                    </label>
-
-                    <input
-                        type="text"
-                        id="nome"
-                        name="nome"
-                        placeholder="Seu nome"
-                        required
-                    >
-
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
                 </div>
 
-
                 <div class="form-group">
-
-                    <label for="email">
-                        E-mail
-                    </label>
-
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="seu@email.com"
-                        required
-                    >
-
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" placeholder="seu@email.com" required>
                 </div>
 
-
                 <div class="form-group">
-
-                    <label for="senha">
-                        Senha
-                    </label>
-
-                    <input
-                        type="password"
-                        id="senha"
-                        name="senha"
-                        placeholder="Crie uma senha"
-                        required
-                    >
-
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" name="senha" placeholder="Crie uma senha" required>
                 </div>
 
-
                 <div class="form-group">
-
-                    <label for="confirmarSenha">
-                        Confirmar senha
-                    </label>
-
-                    <input
-                        type="password"
-                        id="confirmarSenha"
-                        name="confirmarSenha"
-                        placeholder="Digite a senha novamente"
-                        required
-                    >
-
+                    <label for="confirmarSenha">Confirmar senha</label>
+                    <input type="password" id="confirmarSenha" name="confirmarSenha" placeholder="Digite a senha novamente" required>
                 </div>
 
-
-                <button
-                    type="submit"
-                    class="btn btn-primary btn-large full"
-                >
+                <button type="submit" class="btn btn-primary btn-large full">
                     Criar conta
                 </button>
 
-
                 <p class="auth-footer-text">
-                    Já possui uma conta?
-                    <a href="login.html">
-                        Entrar
-                    </a>
+                    Já possui uma conta? <a href="login.html">Entrar</a>
                 </p>
-
             </form>
-
         </div>
-
     </main>
 
-
-    <!-- FOOTER -->
-
     <footer class="footer">
-
         <div class="container footer-content">
-
-            <div class="logo">
-                Democ<span>Info</span>
-            </div>
-
-            <span>
-                © 2026 DemocInfo. Todos os direitos reservados.
-            </span>
-
+            <div class="logo">Democ<span>Info</span></div>
+            <span>© 2026 DemocInfo. Todos os direitos reservados.</span>
         </div>
-
     </footer>
 
-
-    <script src="script.js"></script>
-
+    <!-- Script de Autenticação -->
+    <script src="auth.js"></script>
 </body>
 
 </html>
