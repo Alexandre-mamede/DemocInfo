@@ -38,10 +38,10 @@
 
         <div class="sidebar-footer">
             <div class="user-mini-profile">
-                <div class="user-avatar-mini">JS</div>
+                <div class="user-avatar-mini" id="userAvatarLetter">DI</div>
                 <div class="user-info-mini">
-                    <strong>João Silva</strong>
-                    <span>Plano Starter</span>
+                    <strong id="sidebarEmpresaNome">Minha Empresa</strong>
+                    <span id="sidebarPlanoNome">Plano Starter</span>
                 </div>
             </div>
             <button id="logoutBtn" class="btn-logout" title="Sair da conta">
@@ -53,17 +53,15 @@
     <!-- MAIN CONTENT WRAPPER -->
     <main class="dashboard-main">
 
-        <!-- TOPO / HEADER DO DASHBOARD -->
         <header class="dash-topbar">
             <div class="dash-welcome">
                 <h1>Painel de Controle</h1>
-                <p>Bem-vindo de volta, monitorando sua retenção em tempo real.</p>
+                <p>Monitorando a retenção da empresa <span id="topbarEmpresaNome" style="color: var(--primary-light); font-weight: 600;">...</span></p>
             </div>
             <div class="dash-actions-top">
-                <span class="badge-active-ai">● IA Ativa e Monitorando</span>
+                <span class="badge-active-ai" id="aiStatusBadge">● IA Ativa e Monitorando</span>
             </div>
         </header>
-
 
         <!-- CONTEÚDO DAS ABAS -->
 
@@ -72,18 +70,18 @@
             <div class="stats-grid">
                 <div class="stat-card">
                     <span class="stat-title">Clientes analisados</span>
-                    <strong>8.421</strong>
-                    <small class="positive">↑ 12,4% este mês</small>
+                    <strong id="statAnalisados">0</strong>
+                    <small class="positive">Atualizado agora</small>
                 </div>
                 <div class="stat-card">
                     <span class="stat-title">Clientes em risco</span>
-                    <strong>728</strong>
-                    <small class="negative">↑ 8,2% atenção</small>
+                    <strong id="statEmRisco">0</strong>
+                    <small class="negative">Requer atenção</small>
                 </div>
                 <div class="stat-card">
                     <span class="stat-title">Clientes recuperados</span>
-                    <strong>1.284</strong>
-                    <small class="positive">↑ 21,7% sucesso</small>
+                    <strong id="statRecuperados">0</strong>
+                    <small class="positive">Sucesso</small>
                 </div>
             </div>
 
@@ -97,128 +95,64 @@
                         <span class="view-all" onclick="mudarAbaPara('clientes-risco')">Ver todos</span>
                     </div>
 
-                    <div class="customer">
-                        <div class="customer-avatar">JS</div>
-                        <div class="customer-info">
-                            <strong>João Silva</strong>
-                            <span>27 dias sem comprar</span>
-                        </div>
-                        <div class="risk high">82% Risco</div>
+                    <div id="listaClientesVazia" style="padding: 30px; text-align: center; color: var(--text-muted); font-size: 13px;">
+                        Nenhum cliente em risco detectado no momento. Sua base está estável! 🎉
                     </div>
-
-                    <div class="customer">
-                        <div class="customer-avatar">MS</div>
-                        <div class="customer-info">
-                            <strong>Maria Santos</strong>
-                            <span>24 dias sem comprar</span>
-                        </div>
-                        <div class="risk high">76% Risco</div>
-                    </div>
-
-                    <div class="customer">
-                        <div class="customer-avatar">CO</div>
-                        <div class="customer-info">
-                            <strong>Carlos Oliveira</strong>
-                            <span>19 dias sem comprar</span>
-                        </div>
-                        <div class="risk medium">64% Risco</div>
-                    </div>
+                    
+                    <div id="listaClientesContainer"></div>
                 </div>
 
                 <div class="ai-card">
                     <div class="ai-icon">✦</div>
                     <div>
                         <span>RECOMENDAÇÃO DA IA</span>
-                        <strong>Disparar oferta para João Silva</strong>
-                        <p>O algoritmo detectou 82% de chance de churn. Enviar cupom de 10% via automação.</p>
-                        <button class="btn btn-primary" style="margin-top: 10px; font-size: 11px; min-height: 32px; padding: 0 14px;">Executar Ação</button>
+                        <strong id="aiRecTitulo">Aguardando novos dados</strong>
+                        <p id="aiRecDesc">Conecte sua base de clientes para começar a receber estratégias automáticas de retenção.</p>
                     </div>
                 </div>
             </div>
         </section>
-
 
         <!-- 2. CLIENTES EM RISCO -->
         <section id="clientes-risco" class="tab-content">
             <div class="section-title" style="margin-bottom: 25px;">
                 <span class="eyebrow">Monitoramento Detalhado</span>
                 <h2>Todos os Clientes em Risco de Churn</h2>
-                <p>Lista completa gerada automaticamente pela nossa inteligência comportamental.</p>
+                <p>Lista gerada pela nossa inteligência comportamental.</p>
             </div>
-
-            <div class="risk-section" style="background: rgba(255,255,255,0.015);">
-                <div class="customer" style="padding: 15px 0;">
-                    <div class="customer-avatar">JS</div>
-                    <div class="customer-info">
-                        <strong>João Silva</strong>
-                        <span>Última compra: R$ 450,00 • 27 dias inativo</span>
-                    </div>
-                    <div class="risk high">82% Risco</div>
-                </div>
-                <div class="customer" style="padding: 15px 0;">
-                    <div class="customer-avatar">MS</div>
-                    <div class="customer-info">
-                        <strong>Maria Santos</strong>
-                        <span>Última compra: R$ 1.200,00 • 24 dias inativo</span>
-                    </div>
-                    <div class="risk high">76% Risco</div>
-                </div>
-                <div class="customer" style="padding: 15px 0;">
-                    <div class="customer-avatar">CO</div>
-                    <div class="customer-info">
-                        <strong>Carlos Oliveira</strong>
-                        <span>Última compra: R$ 320,00 • 19 dias inativo</span>
-                    </div>
-                    <div class="risk medium">64% Risco</div>
-                </div>
-                <div class="customer" style="padding: 15px 0;">
-                    <div class="customer-avatar">AP</div>
-                    <div class="customer-info">
-                        <strong>Ana Paula</strong>
-                        <span>Última compra: R$ 890,00 • 15 dias inativo</span>
-                    </div>
-                    <div class="risk medium">55% Risco</div>
-                </div>
+            <div class="risk-section" style="background: rgba(255,255,255,0.015);" id="listaCompletaRisco">
+                <p style="color: var(--text-muted); font-size: 13px; text-align: center; padding: 20px;">Nenhum registro encontrado.</p>
             </div>
         </section>
-
 
         <!-- 3. INSIGHTS DE IA -->
         <section id="ia-insights" class="tab-content">
             <div class="section-title" style="margin-bottom: 25px;">
                 <span class="eyebrow">Inteligência Artificial</span>
                 <h2>Relatórios e Padrões Comportamentais</h2>
-                <p>Análises preditivas profundas de retenção de mercado.</p>
+                <p>Análises preditivas profundas.</p>
             </div>
-
             <div class="stats-grid">
                 <div class="stat-card">
                     <span class="stat-title">Taxa Média de Retenção</span>
-                    <strong>94.2%</strong>
-                    <small class="positive">Acima da média do setor</small>
+                    <strong id="insightRetencao">100%</strong>
+                    <small class="positive">Base limpa</small>
                 </div>
                 <div class="stat-card">
-                    <span class="stat-title">Pico de Abandono</span>
-                    <strong>21 Dias</strong>
-                    <small class="negative">Janela crítica identificada</small>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-title">Eficácia dos Cupons</span>
-                    <strong>68.5%</strong>
-                    <small class="positive">Taxa de conversão em retorno</small>
+                    <span class="stat-title">Janela Crítica</span>
+                    <strong>-- Dias</strong>
+                    <small class="negative">Sem dados suficientes</small>
                 </div>
             </div>
         </section>
 
-
-        <!-- 4. ASSINAR PLANO (NOVO) -->
+        <!-- 4. ASSINAR PLANO -->
         <section id="assinar-plano" class="tab-content">
             <div class="section-title center" style="margin-bottom: 35px;">
                 <span class="eyebrow">PLANOS E ASSINATURAS</span>
                 <h2>Evolua sua operação de retenção</h2>
-                <p>Escolha o plano ideal para desbloquear recursos avançados de IA e escala ilimitada.</p>
+                <p>Escolha o plano ideal para desbloquear recursos avançados.</p>
             </div>
-
             <div class="pricing-grid" style="max-width: 1000px; margin: 0 auto;">
                 <div class="pricing-card">
                     <h3>Starter</h3>
@@ -227,11 +161,9 @@
                     <ul>
                         <li>✓ Até 5.000 clientes</li>
                         <li>✓ Análise de comportamento</li>
-                        <li>✓ Detecção de risco</li>
                     </ul>
-                    <button class="btn btn-secondary full" onclick="alert('Você já está utilizando ou este plano é o atual!')">Plano Atual</button>
+                    <button class="btn btn-secondary full" onclick="alert('Plano atual')">Plano Atual</button>
                 </div>
-
                 <div class="pricing-card featured">
                     <div class="popular">MAIS POPULAR</div>
                     <h3>Professional</h3>
@@ -240,44 +172,38 @@
                     <ul>
                         <li>✓ Até 50.000 clientes</li>
                         <li>✓ Inteligência artificial completa</li>
-                        <li>✓ Ofertas personalizadas</li>
-                        <li>✓ Automação e relatórios</li>
                     </ul>
-                    <button class="btn btn-primary full" onclick="alert('Redirecionando para o gateway de pagamento seguro...')">Fazer Upgrade</button>
+                    <button class="btn btn-primary full" onclick="alert('Redirecionando para pagamento...')">Fazer Upgrade</button>
                 </div>
-
                 <div class="pricing-card">
                     <h3>Enterprise</h3>
                     <p>Para grandes operações.</p>
                     <div class="price">Personalizado</div>
                     <ul>
                         <li>✓ Clientes ilimitados</li>
-                        <li>✓ IA avançada sob medida</li>
-                        <li>✓ Suporte dedicado 24/7</li>
+                        <li>✓ IA avançada</li>
                     </ul>
-                    <button class="btn btn-secondary full" onclick="alert('Solicitação enviada com sucesso! Entraremos em contato.')">Falar com Consultor</button>
+                    <button class="btn btn-secondary full" onclick="alert('Solicitação enviada!')">Falar com Consultor</button>
                 </div>
             </div>
         </section>
-
 
         <!-- 5. CONFIGURAÇÕES -->
         <section id="configuracoes" class="tab-content">
             <div class="section-title" style="margin-bottom: 25px;">
                 <span class="eyebrow">CONTA & SISTEMA</span>
                 <h2>Configurações da Empresa</h2>
-                <p>Gerencie seus dados corporativos e credenciais de acesso.</p>
+                <p>Gerencie seus dados corporativos.</p>
             </div>
-
             <div class="auth-container" style="max-width: 100%; margin: 0; background: rgba(255,255,255,0.02); border: 1px solid var(--border);">
-                <form class="auth-form" onsubmit="event.preventDefault(); alert('Configurações salvas com sucesso!');">
+                <form class="auth-form" onsubmit="event.preventDefault(); alert('Configurações salvas!');">
                     <div class="form-group">
                         <label>Nome da Empresa</label>
-                        <input type="text" value="Minha Empresa LTDA">
+                        <input type="text" id="configEmpresaInput" value="">
                     </div>
                     <div class="form-group">
                         <label>E-mail do Administrador</label>
-                        <input type="email" value="contato@empresa.com">
+                        <input type="email" id="configEmailInput" value="">
                     </div>
                     <button type="submit" class="btn btn-primary" style="width: auto;">Salvar Alterações</button>
                 </form>
@@ -286,45 +212,76 @@
 
     </main>
 
-
-    <!-- SCRIPT DE NAVEGAÇÃO DAS ABAS E LOGOUT -->
+    <!-- SCRIPT DE CONTROLE DINÂMICO DO DASHBOARD -->
     <script>
-        // Lógica de alternância de abas da Sidebar
-        const navItems = document.querySelectorAll('.sidebar-nav .nav-item');
-        const tabContents = document.querySelectorAll('.dashboard-main .tab-content');
-
-        navItems.forEach(item => {
-            item.addEventListener('click', (e) => {
-                e.preventDefault();
+        document.addEventListener("DOMContentLoaded", () => {
+            // Recupera o usuário logado atual
+            const usuarioStr = localStorage.getItem("democinfo_usuario_logado");
+            if (usuarioStr) {
+                const user = JSON.parse(usuarioStr);
                 
-                // Remove classe active de todos
-                navItems.forEach(nav => nav.classList.remove('active'));
-                tabContents.forEach(tab => tab.classList.remove('active'));
+                // Preenche o nome da empresa na Sidebar e Topbar
+                document.getElementById("sidebarEmpresaNome").textContent = user.empresa || "Minha Empresa";
+                document.getElementById("topbarEmpresaNome").textContent = user.empresa || "Minha Empresa";
+                document.getElementById("configEmpresaInput").value = user.empresa || "";
+                document.getElementById("configEmailInput").value = user.email || "";
+                
+                // Define as iniciais no avatar
+                if (user.empresa) {
+                    const iniciais = user.empresa.substring(0, 2).toUpperCase();
+                    document.getElementById("userAvatarLetter").textContent = iniciais;
+                }
 
-                // Adiciona active no item clicado
-                item.classList.add('active');
+                // Se for a conta ADMIN de exemplo, injeta dados fictícios para demonstração
+                if (user.isAdmin) {
+                    document.getElementById("statAnalisados").textContent = "8.421";
+                    document.getElementById("statEmRisco").textContent = "728";
+                    document.getElementById("statRecuperados").textContent = "1.284";
+                    document.getElementById("insightRetencao").textContent = "94.2%";
+                    document.getElementById("aiRecTitulo").textContent = "Disparar oferta para João Silva";
+                    document.getElementById("aiRecDesc").textContent = "O algoritmo detectou 82% de chance de churn. Enviar cupom de 10%.";
+                    
+                    document.getElementById("listaClientesVazia").style.display = "none";
+                    document.getElementById("listaClientesContainer").innerHTML = `
+                        <div class="customer"><div class="customer-avatar">JS</div><div class="customer-info"><strong>João Silva</strong><span>27 dias sem comprar</span></div><div class="risk high">82% Risco</div></div>
+                        <div class="customer"><div class="customer-avatar">MS</div><div class="customer-info"><strong>Maria Santos</strong><span>24 dias sem comprar</span></div><div class="risk high">76% Risco</div></div>
+                    `;
+                    document.getElementById("listaCompletaRisco").innerHTML = `
+                        <div class="customer" style="padding: 15px 0;"><div class="customer-avatar">JS</div><div class="customer-info"><strong>João Silva</strong><span>Última compra: R$ 450,00 • 27 dias inativo</span></div><div class="risk high">82% Risco</div></div>
+                        <div class="customer" style="padding: 15px 0;"><div class="customer-avatar">MS</div><div class="customer-info"><strong>Maria Santos</strong><span>Última compra: R$ 1.200,00 • 24 dias inativo</span></div><div class="risk high">76% Risco</div></div>
+                    `;
+                }
+            }
 
-                // Mostra a aba correspondente
-                const targetId = item.getAttribute('data-target');
-                document.getElementById(targetId).classList.add('active');
+            // Alternância de abas
+            const navItems = document.querySelectorAll('.sidebar-nav .nav-item');
+            const tabContents = document.querySelectorAll('.dashboard-main .tab-content');
+
+            navItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    tabContents.forEach(tab => tab.classList.remove('active'));
+
+                    item.classList.add('active');
+                    const targetId = item.getAttribute('data-target');
+                    document.getElementById(targetId).classList.add('active');
+                });
+            });
+
+            // Logout
+            document.getElementById('logoutBtn').addEventListener('click', () => {
+                localStorage.removeItem('usuarioLogado');
+                localStorage.removeItem('democinfo_usuario_logado');
+                window.location.href = 'login.html';
             });
         });
 
-        // Função auxiliar para mudar de aba via botão interno
         function mudarAbaPara(targetId) {
-            navItems.forEach(nav => {
-                if(nav.getAttribute('data-target') === targetId) {
-                    nav.click();
-                }
+            document.querySelectorAll('.sidebar-nav .nav-item').forEach(nav => {
+                if(nav.getAttribute('data-target') === targetId) nav.click();
             });
         }
-
-        // Lógica de Logout
-        document.getElementById('logoutBtn').addEventListener('click', () => {
-            localStorage.removeItem('usuarioLogado');
-            window.location.href = 'login.html';
-        });
     </script>
-
 </body>
 </html>
