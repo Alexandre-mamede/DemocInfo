@@ -94,7 +94,7 @@
                     <div class="section-header">
                         <div>
                             <span class="dashboard-label">URGENTE</span>
-                            <h4>Alertas Recentes de Abandono</h4>
+                            <h4>Alertas Recentes de Abandono (Maior Risco)</h4>
                         </div>
                         <span class="view-all" onclick="mudarAbaPara('clientes-risco')">Ver todos</span>
                     </div>
@@ -109,7 +109,7 @@
                 <div class="ai-card">
                     <div class="ai-icon">✦</div>
                     <div>
-                        <span>RECOMENDAÇÃO DA IA</span>
+                        <span>RECOMENDAÇÃO PRIORITÁRIA DA IA</span>
                         <strong id="aiRecTitulo">Aguardando novos dados</strong>
                         <p id="aiRecDesc">Adicione clientes na aba lateral para começar a receber estratégias automáticas de retenção.</p>
                     </div>
@@ -160,8 +160,8 @@
         <section id="clientes-risco" class="tab-content">
             <div class="section-title" style="margin-bottom: 25px;">
                 <span class="eyebrow">Monitoramento Detalhado</span>
-                <h2>Todos os Clientes em Risco de Churn</h2>
-                <p>Lista gerada e classificada pela nossa inteligência comportamental.</p>
+                <h2>Todos os Clientes (Ordenados por Prioridade de Risco)</h2>
+                <p>Lista organizada automaticamente para focar nos casos mais críticos.</p>
             </div>
             <div class="risk-section" style="background: rgba(255,255,255,0.015);" id="listaCompletaRisco">
                 <p style="color: var(--text-muted); font-size: 13px; text-align: center; padding: 20px;">Nenhum registro encontrado.</p>
@@ -169,7 +169,7 @@
         </section>
 
 
-        <!-- 4. INSIGHTS DE IA (MELHORADO E INTERATIVO) -->
+        <!-- 4. INSIGHTS DE IA -->
         <section id="ia-insights" class="tab-content">
             <div class="section-title" style="margin-bottom: 25px;">
                 <span class="eyebrow">Inteligência Artificial</span>
@@ -297,7 +297,6 @@
 
             if (!user) return;
 
-            // Exibe dados da empresa logada
             document.getElementById("sidebarEmpresaNome").textContent = user.empresa || "Minha Empresa";
             document.getElementById("topbarEmpresaNome").textContent = user.empresa || "Minha Empresa";
             document.getElementById("configEmpresaInput").value = user.empresa || "";
@@ -309,7 +308,6 @@
 
             atualizarDashboard(user);
 
-            // Adicionar Novo Cliente salvando no Database
             const formCliente = document.getElementById("formAdicionarCliente");
             formCliente.addEventListener("submit", (e) => {
                 e.preventDefault();
@@ -321,7 +319,6 @@
 
                 user.clientes.push({ nome, email, dias, valor });
                 
-                // Atualiza o banco de dados geral
                 salvarNoDatabase(usuarios, user);
 
                 formCliente.reset();
@@ -330,7 +327,6 @@
                 atualizarDashboard(user);
             });
 
-            // Salvar Configurações
             const configForm = document.getElementById("configForm");
             configForm.addEventListener("submit", (e) => {
                 e.preventDefault();
@@ -349,7 +345,6 @@
                 alert("Configurações salvas com sucesso!");
             });
 
-            // Alternância de abas
             const navItems = document.querySelectorAll('.sidebar-nav .nav-item');
             const tabContents = document.querySelectorAll('.dashboard-main .tab-content');
 
@@ -372,6 +367,19 @@
             });
         });
 
+        // Função auxiliar para calcular o percentual de risco de um cliente
+        function calcularRisco(dias) {
+            let risco;
+            if (dias <= 7) {
+                risco = dias * 3;
+            } else if (dias <= 20) {
+                risco = 25 + (dias - 7) * 2;
+            } else {
+                risco = Math.min(50 + ((dias - 20) * 2.5), 98);
+            }
+            return parseFloat(risco.toFixed(0));
+        }
+
         function atualizarDashboard(user) {
             const totalCadastrados = user.clientes.length;
             const totalAnalisados = user.isAdmin ? 8300 + totalCadastrados : totalCadastrados;
@@ -382,24 +390,26 @@
             document.getElementById("statEmRisco").textContent = clientesRisco.length;
             document.getElementById("statRecuperados").textContent = totalRecuperados.toLocaleString('pt-BR');
 
-            // --- ATUALIZAÇÃO INTELIGENTE DA ABA DE INSIGHTS DE IA ---
+            // --- ORDENAÇÃO INTELIGENTE: DO MAIOR PARA O MENOR RISCO ---
+            user.clientes.sort((a, b) => calcularRisco(b.dias) - calcularRisco(a.dias));
+
             if (totalCadastrados > 0) {
                 const taxaRetencao = (((totalCadastrados - clientesRisco.length) / totalCadastrados) * 100).toFixed(1);
                 document.getElementById("insightRetencao").textContent = taxaRetencao + "%";
                 
                 if (taxaRetencao >= 70) {
-                    document.getElementById("insightRetencaoSub").textContent = "Base saudável e estável";
+                    document.getElementById("insightRetencaoSub").textContent = "Saúde excelente da base";
                 } else {
                     document.getElementById("insightRetencaoSub").textContent = "Atenção: alto volume em risco";
                 }
 
                 document.getElementById("textoDiagnosticoIA").textContent = 
-                    `A IA monitorou ${totalCadastrados} clientes cadastrados. Identificamos que ${clientesRisco.length} deles ultrapassaram a janela crítica de 15 dias sem interações, tornando recomendável o disparo imediato de campanhas personalizadas de incentivo.`;
+                    `A IA priorizou e monitorou ${totalCadastrados} clientes. O caso mais crítico no momento exige atenção imediata para evitar o churn de ${user.clientes[0].nome}.`;
             } else {
                 document.getElementById("insightRetencao").textContent = "100%";
                 document.getElementById("insightRetencaoSub").textContent = "Nenhum dado cadastrado";
                 document.getElementById("textoDiagnosticoIA").textContent = 
-                    "Adicione clientes na aba lateral para que os modelos de machine learning comecem a mapear o comportamento da sua carteira.";
+                    "Adicione clientes na aba lateral para que os modelos de machine learning comecem a priorizar as ações de retenção.";
             }
 
             const containerVazia = document.getElementById("listaClientesVazia");
@@ -420,16 +430,7 @@
 
                 user.clientes.forEach(c => {
                     const iniciais = c.nome.substring(0, 2).toUpperCase();
-                    
-                    let riscoPct;
-                    if (c.dias <= 7) {
-                        riscoPct = c.dias * 3;
-                    } else if (c.dias <= 20) {
-                        riscoPct = 25 + (c.dias - 7) * 2;
-                    } else {
-                        riscoPct = Math.min(50 + ((c.dias - 20) * 2.5), 98);
-                    }
-                    riscoPct = riscoPct.toFixed(0);
+                    const riscoPct = calcularRisco(c.dias);
 
                     let classeRisco = "low";
                     let textoRisco = "Baixo Risco";
@@ -456,13 +457,16 @@
                 containerLista.innerHTML = htmlCompleto;
                 containerCompleto.innerHTML = htmlCompleto;
 
-                if (clientesRisco.length > 0) {
-                    const alvo = clientesRisco[0];
-                    document.getElementById("aiRecTitulo").textContent = `Disparar oferta para ${alvo.nome}`;
-                    document.getElementById("aiRecDesc").textContent = `O algoritmo detectou inatividade de ${alvo.dias} dias. Recomendado envio de cupom de 10% OFF.`;
+                // A recomendação principal da IA agora pega automaticamente o primeiro da lista (o de MAIOR RISCO)
+                const maiorRiscoAlvo = user.clientes[0];
+                const riscoMaior = calcularRisco(maiorRiscoAlvo.dias);
+                
+                if (riscoMaior >= 45) {
+                    document.getElementById("aiRecTitulo").textContent = `Prioridade Máxima: Oferta para ${maiorRiscoAlvo.nome}`;
+                    document.getElementById("aiRecDesc").textContent = `O cliente apresenta ${riscoMaior}% de risco de churn (${maiorRiscoAlvo.dias} dias inativo). Recomendado disparo imediato de cupom de 10% OFF.`;
                 } else {
-                    document.getElementById("aiRecTitulo").textContent = "Base saudável";
-                    document.getElementById("aiRecDesc").textContent = "Nenhum sinal crítico de churn detectado nos clientes cadastrados.";
+                    document.getElementById("aiRecTitulo").textContent = `Monitorando ${maiorRiscoAlvo.nome}`;
+                    document.getElementById("aiRecDesc").textContent = `Nenhum sinal crítico urgente. O cliente com maior pontuação está com ${riscoMaior}% de risco.`;
                 }
             }
         }
