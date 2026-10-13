@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- GARANTIR CONTA ADMIN DE EXEMPLO NO SISTEMA ---
     if (!localStorage.getItem("democinfo_admin_criado")) {
         const contaAdmin = {
-            empresa: "DemocInfo Corp",
+            empresa: "DemocInfo Inc",
             nome: "Administrador",
             email: "admin@democinfo.com",
             senha: "admin123",
@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            alert("E-mail ou senha incorretos. (Dica admin: admin@democinfo.com / admin123)");
+            alert("E-mail ou senha incorretos.");
         });
     }
 

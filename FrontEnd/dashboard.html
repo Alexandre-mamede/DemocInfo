@@ -118,7 +118,7 @@
         </section>
 
 
-        <!-- 2. ADICIONAR CLIENTE (NOVA ABA INTERATIVA) -->
+        <!-- 2. ADICIONAR CLIENTE -->
         <section id="adicionar-cliente" class="tab-content">
             <div class="section-title" style="margin-bottom: 25px;">
                 <span class="eyebrow">CADASTRO INTELIGENTE</span>
@@ -266,9 +266,7 @@
             
             const user = JSON.parse(usuarioStr);
             
-            // Inicializa estrutura de clientes na sessão do usuário se não existir
             if (!user.clientes) {
-                // Se for admin de exemplo, injeta dados iniciais, senão começa vazio
                 user.clientes = user.isAdmin ? [
                     { nome: "João Silva", email: "joao@email.com", dias: 27, valor: "450,00" },
                     { nome: "Maria Santos", email: "maria@email.com", dias: 24, valor: "1.200,00" }
@@ -276,7 +274,6 @@
                 salvarUsuario(user);
             }
 
-            // Exibe dados na interface
             document.getElementById("sidebarEmpresaNome").textContent = user.empresa || "Minha Empresa";
             document.getElementById("topbarEmpresaNome").textContent = user.empresa || "Minha Empresa";
             document.getElementById("configEmpresaInput").value = user.empresa || "";
@@ -288,7 +285,6 @@
 
             atualizarDashboard(user);
 
-            // --- CADASTRAR NOVO CLIENTE ---
             const formCliente = document.getElementById("formAdicionarCliente");
             formCliente.addEventListener("submit", (e) => {
                 e.preventDefault();
@@ -298,18 +294,15 @@
                 const dias = parseInt(document.getElementById("diasInativo").value);
                 const valor = document.getElementById("valorUltimaCompra").value.trim();
 
-                // Adiciona o cliente na lista
                 user.clientes.push({ nome, email, dias, valor });
                 salvarUsuario(user);
 
-                // Limpa formulário e redireciona para a visão geral
                 formCliente.reset();
                 alert("Cliente analisado e adicionado com sucesso!");
                 mudarAbaPara('visao-geral');
                 atualizarDashboard(user);
             });
 
-            // Alternância de abas
             const navItems = document.querySelectorAll('.sidebar-nav .nav-item');
             const tabContents = document.querySelectorAll('.dashboard-main .tab-content');
 
@@ -325,7 +318,6 @@
                 });
             });
 
-            // Logout
             document.getElementById('logoutBtn').addEventListener('click', () => {
                 localStorage.removeItem('usuarioLogado');
                 localStorage.removeItem('democinfo_usuario_logado');
@@ -333,10 +325,9 @@
             });
         });
 
-        // Função que recalcula e atualiza todas as telas com base nos clientes cadastrados
         function atualizarDashboard(user) {
-            const totalAnalisados = user.clientes.length * 42 + (user.isAdmin ? 8300 : 0); // Fator simulado de volume
-            const clientesRisco = user.clientes.filter(c => c.dias >= 15); // Considera risco com 15+ dias inativo
+            const totalAnalisados = user.clientes.length * 42 + (user.isAdmin ? 8300 : 0);
+            const clientesRisco = user.clientes.filter(c => c.dias >= 15);
 
             document.getElementById("statAnalisados").textContent = totalAnalisados.toLocaleString('pt-BR');
             document.getElementById("statEmRisco").textContent = clientesRisco.length;
@@ -356,15 +347,32 @@
             } else {
                 containerVazia.style.display = "none";
                 
-                // Gera HTML para Visão Geral (recentes)
-                let htmlRecentes = "";
                 let htmlCompleto = "";
 
                 user.clientes.forEach(c => {
                     const iniciais = c.nome.substring(0, 2).toUpperCase();
-                    const riscoPct = Math.min(50 + (c.dias * 1.5), 98).toFixed(0);
-                    const classeRisco = riscoPct >= 75 ? "high" : "medium";
-                    const textoRisco = riscoPct >= 75 ? "Alto Risco" : "Médio Risco";
+                    
+                    // Lógica de risco proporcional ajustada e corrigida
+                    let riscoPct;
+                    if (c.dias <= 7) {
+                        riscoPct = c.dias * 3; // 1 dia = 3%, 7 dias = 21%
+                    } else if (c.dias <= 20) {
+                        riscoPct = 25 + (c.dias - 7) * 2; // Crescimento moderado
+                    } else {
+                        riscoPct = Math.min(50 + ((c.dias - 20) * 2.5), 98); // Risco alto após muita inatividade
+                    }
+                    riscoPct = riscoPct.toFixed(0);
+
+                    // Classificação visual correta
+                    let classeRisco = "low";
+                    let textoRisco = "Baixo Risco";
+                    if (riscoPct >= 75) {
+                        classeRisco = "high";
+                        textoRisco = "Alto Risco";
+                    } else if (riscoPct >= 45) {
+                        classeRisco = "medium";
+                        textoRisco = "Médio Risco";
+                    }
 
                     htmlCompleto += `
                         <div class="customer" style="padding: 15px 0;">
@@ -381,7 +389,6 @@
                 containerLista.innerHTML = htmlCompleto;
                 containerCompleto.innerHTML = htmlCompleto;
 
-                // Atualiza recomendação da IA com base no primeiro cliente em risco
                 if (clientesRisco.length > 0) {
                     const alvo = clientesRisco[0];
                     document.getElementById("aiRecTitulo").textContent = `Disparar oferta para ${alvo.nome}`;
@@ -395,7 +402,6 @@
 
         function salvarUsuario(user) {
             localStorage.setItem("democinfo_usuario_logado", JSON.stringify(user));
-            // Se for usuário comum, atualiza também no registro geral se houver
         }
 
         function mudarAbaPara(targetId) {
