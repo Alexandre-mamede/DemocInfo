@@ -106,5 +106,5 @@ By analyzing individual customer behavior, identifying potential risks, and reco
 ## Authors
 -Alexandre Mamede Patrocinio
 -Gabriel Bittar
--Cauan Chaga
+-Cauan Chaga.
 -Diego Fernandes.
