@@ -107,4 +107,4 @@ By analyzing individual customer behavior, identifying potential risks, and reco
 -Alexandre Mamede Patrocinio
 -Gabriel Bittar
 -Cauan Chaga
--Diego Fernandes
+-Diego Fernandes.
